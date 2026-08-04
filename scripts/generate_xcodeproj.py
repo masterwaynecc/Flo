@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Luma.xcodeproj from discovered Swift sources."""
+"""Generate Dawt.xcodeproj from discovered Swift sources."""
 
 from __future__ import annotations
 
@@ -8,10 +8,10 @@ import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-IOS = ROOT / "ios" / "Luma"
-PROJECT_DIR = IOS / "Luma.xcodeproj"
-SOURCES = sorted((IOS / "Luma").rglob("*.swift"))
-TESTS = sorted((ROOT / "Tests" / "LumaTests").rglob("*.swift"))
+IOS = ROOT / "ios" / "Dawt"
+PROJECT_DIR = IOS / "Dawt.xcodeproj"
+SOURCES = sorted((IOS / "Dawt").rglob("*.swift"))
+TESTS = sorted((ROOT / "Tests" / "DawtTests").rglob("*.swift"))
 
 
 def nid() -> str:
@@ -55,10 +55,10 @@ def main() -> None:
         test_children.append(f"\t\t\t\t{fid} /* {path.name} */,")
 
     file_refs += [
-        f'\t\t{ids["assets"]} /* Assets.xcassets */ = {{isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Luma/Assets.xcassets; sourceTree = "<group>"; }};',
-        f'\t\t{ids["info"]} /* Info.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Luma/Info.plist; sourceTree = "<group>"; }};',
-        f'\t\t{ids["app_product"]} /* Luma.app */ = {{isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luma.app; sourceTree = BUILT_PRODUCTS_DIR; }};',
-        f'\t\t{ids["test_product"]} /* LumaTests.xctest */ = {{isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; }};',
+        f'\t\t{ids["assets"]} /* Assets.xcassets */ = {{isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dawt/Assets.xcassets; sourceTree = "<group>"; }};',
+        f'\t\t{ids["info"]} /* Info.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Dawt/Info.plist; sourceTree = "<group>"; }};',
+        f'\t\t{ids["app_product"]} /* Dawt.app */ = {{isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawt.app; sourceTree = BUILT_PRODUCTS_DIR; }};',
+        f'\t\t{ids["test_product"]} /* DawtTests.xctest */ = {{isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DawtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; }};',
     ]
     build_app.append(
         f'\t\t{ids["assets_build"]} /* Assets.xcassets in Resources */ = {{isa = PBXBuildFile; fileRef = {ids["assets"]} /* Assets.xcassets */; }};'
@@ -81,8 +81,8 @@ def main() -> None:
 /* Begin PBXBuildFile section */
 {chr(10).join(build_app)}
 {chr(10).join(build_test)}
-\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Luma; }};
-\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Luma */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};
+\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Dawt; }};
+\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Dawt */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,8 +109,8 @@ def main() -> None:
 \t\t{ids["products"]} /* Products */ = {{
 \t\t\tisa = PBXGroup;
 \t\t\tchildren = (
-\t\t\t\t{ids["app_product"]} /* Luma.app */,
-\t\t\t\t{ids["test_product"]} /* LumaTests.xctest */,
+\t\t\t\t{ids["app_product"]} /* Dawt.app */,
+\t\t\t\t{ids["test_product"]} /* DawtTests.xctest */,
 \t\t\t);
 \t\t\tname = Products;
 \t\t\tsourceTree = "<group>";
@@ -134,9 +134,9 @@ def main() -> None:
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-\t\t{ids["app_target"]} /* Luma */ = {{
+\t\t{ids["app_target"]} /* Dawt */ = {{
 \t\t\tisa = PBXNativeTarget;
-\t\t\tbuildConfigurationList = {ids["app_configs"]} /* Build configuration list for PBXNativeTarget "Luma" */;
+\t\t\tbuildConfigurationList = {ids["app_configs"]} /* Build configuration list for PBXNativeTarget "Dawt" */;
 \t\t\tbuildPhases = (
 \t\t\t\t{ids["app_sources"]} /* Sources */,
 \t\t\t\t{ids["app_frameworks"]} /* Frameworks */,
@@ -144,14 +144,14 @@ def main() -> None:
 \t\t\t);
 \t\t\tbuildRules = ();
 \t\t\tdependencies = ();
-\t\t\tname = Luma;
-\t\t\tproductName = Luma;
-\t\t\tproductReference = {ids["app_product"]} /* Luma.app */;
+\t\t\tname = Dawt;
+\t\t\tproductName = Dawt;
+\t\t\tproductReference = {ids["app_product"]} /* Dawt.app */;
 \t\t\tproductType = "com.apple.product-type.application";
 \t\t}};
-\t\t{ids["test_target"]} /* LumaTests */ = {{
+\t\t{ids["test_target"]} /* DawtTests */ = {{
 \t\t\tisa = PBXNativeTarget;
-\t\t\tbuildConfigurationList = {ids["test_configs"]} /* Build configuration list for PBXNativeTarget "LumaTests" */;
+\t\t\tbuildConfigurationList = {ids["test_configs"]} /* Build configuration list for PBXNativeTarget "DawtTests" */;
 \t\t\tbuildPhases = (
 \t\t\t\t{ids["test_sources"]} /* Sources */,
 \t\t\t\t{ids["test_frameworks"]} /* Frameworks */,
@@ -160,9 +160,9 @@ def main() -> None:
 \t\t\tdependencies = (
 \t\t\t\t{ids["target_dep"]} /* PBXTargetDependency */,
 \t\t\t);
-\t\t\tname = LumaTests;
-\t\t\tproductName = LumaTests;
-\t\t\tproductReference = {ids["test_product"]} /* LumaTests.xctest */;
+\t\t\tname = DawtTests;
+\t\t\tproductName = DawtTests;
+\t\t\tproductReference = {ids["test_product"]} /* DawtTests.xctest */;
 \t\t\tproductType = "com.apple.product-type.bundle.unit-test";
 \t\t}};
 /* End PBXNativeTarget section */
@@ -179,7 +179,7 @@ def main() -> None:
 \t\t\t\t\t{ids["test_target"]} = {{ CreatedOnToolsVersion = 16.0; TestTargetID = {ids["app_target"]}; }};
 \t\t\t\t}};
 \t\t\t}};
-\t\t\tbuildConfigurationList = {ids["proj_configs"]} /* Build configuration list for PBXProject "Luma" */;
+\t\t\tbuildConfigurationList = {ids["proj_configs"]} /* Build configuration list for PBXProject "Dawt" */;
 \t\t\tcompatibilityVersion = "Xcode 14.0";
 \t\t\tdevelopmentRegion = en;
 \t\t\thasScannedForEncodings = 0;
@@ -189,8 +189,8 @@ def main() -> None:
 \t\t\tprojectDirPath = "";
 \t\t\tprojectRoot = "";
 \t\t\ttargets = (
-\t\t\t\t{ids["app_target"]} /* Luma */,
-\t\t\t\t{ids["test_target"]} /* LumaTests */,
+\t\t\t\t{ids["app_target"]} /* Dawt */,
+\t\t\t\t{ids["test_target"]} /* DawtTests */,
 \t\t\t);
 \t\t}};
 /* End PBXProject section */
@@ -257,10 +257,10 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
-\t\t\t\tINFOPLIST_FILE = Luma/Info.plist;
+\t\t\t\tINFOPLIST_FILE = dawt/Info.plist;
 \t\t\t\tLD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
 \t\t\t\tMARKETING_VERSION = 0.1.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.dawt.cycle;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
@@ -276,10 +276,10 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tCURRENT_PROJECT_VERSION = 1;
 \t\t\t\tGENERATE_INFOPLIST_FILE = NO;
-\t\t\t\tINFOPLIST_FILE = Luma/Info.plist;
+\t\t\t\tINFOPLIST_FILE = dawt/Info.plist;
 \t\t\t\tLD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
 \t\t\t\tMARKETING_VERSION = 0.1.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.dawt.cycle;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 \t\t\t\tSWIFT_EMIT_LOC_STRINGS = YES;
@@ -295,11 +295,11 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tIPHONEOS_DEPLOYMENT_TARGET = 17.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle.tests;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.dawt.cycle.tests;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSWIFT_VERSION = 5.0;
 \t\t\t\tTARGETED_DEVICE_FAMILY = 1;
-\t\t\t\tTEST_HOST = "$(BUILT_PRODUCTS_DIR)/Luma.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Luma";
+\t\t\t\tTEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dawt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dawt";
 \t\t\t}};
 \t\t\tname = Debug;
 \t\t}};
@@ -310,30 +310,30 @@ def main() -> None:
 \t\t\t\tCODE_SIGN_STYLE = Automatic;
 \t\t\t\tGENERATE_INFOPLIST_FILE = YES;
 \t\t\t\tIPHONEOS_DEPLOYMENT_TARGET = 17.0;
-\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle.tests;
+\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = app.dawt.cycle.tests;
 \t\t\t\tPRODUCT_NAME = "$(TARGET_NAME)";
 \t\t\t\tSWIFT_VERSION = 5.0;
 \t\t\t\tTARGETED_DEVICE_FAMILY = 1;
-\t\t\t\tTEST_HOST = "$(BUILT_PRODUCTS_DIR)/Luma.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Luma";
+\t\t\t\tTEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dawt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dawt";
 \t\t\t}};
 \t\t\tname = Release;
 \t\t}};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-\t\t{ids["proj_configs"]} /* Build configuration list for PBXProject "Luma" */ = {{
+\t\t{ids["proj_configs"]} /* Build configuration list for PBXProject "Dawt" */ = {{
 \t\t\tisa = XCConfigurationList;
 \t\t\tbuildConfigurations = ({ids["dbg_proj"]} /* Debug */, {ids["rel_proj"]} /* Release */);
 \t\t\tdefaultConfigurationIsVisible = 0;
 \t\t\tdefaultConfigurationName = Release;
 \t\t}};
-\t\t{ids["app_configs"]} /* Build configuration list for PBXNativeTarget "Luma" */ = {{
+\t\t{ids["app_configs"]} /* Build configuration list for PBXNativeTarget "Dawt" */ = {{
 \t\t\tisa = XCConfigurationList;
 \t\t\tbuildConfigurations = ({ids["dbg_app"]} /* Debug */, {ids["rel_app"]} /* Release */);
 \t\t\tdefaultConfigurationIsVisible = 0;
 \t\t\tdefaultConfigurationName = Release;
 \t\t}};
-\t\t{ids["test_configs"]} /* Build configuration list for PBXNativeTarget "LumaTests" */ = {{
+\t\t{ids["test_configs"]} /* Build configuration list for PBXNativeTarget "DawtTests" */ = {{
 \t\t\tisa = XCConfigurationList;
 \t\t\tbuildConfigurations = ({ids["dbg_test"]} /* Debug */, {ids["rel_test"]} /* Release */);
 \t\t\tdefaultConfigurationIsVisible = 0;
@@ -347,12 +347,12 @@ def main() -> None:
 
     # Move proxy/dependency out of BuildFile section into proper sections via comment labels — Xcode tolerates mixed but let's fix:
     content = content.replace(
-        f'\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Luma; }};\n'
-        f'\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Luma */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};\n/* End PBXBuildFile section */',
+        f'\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Dawt; }};\n'
+        f'\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Dawt */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};\n/* End PBXBuildFile section */',
         "/* End PBXBuildFile section */\n\n/* Begin PBXContainerItemProxy section */\n"
-        f'\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Luma; }};\n'
+        f'\t\t{ids["container"]} /* PBXContainerItemProxy */ = {{isa = PBXContainerItemProxy; containerPortal = {ids["project"]} /* Project object */; proxyType = 1; remoteGlobalIDString = {ids["app_target"]}; remoteInfo = Dawt; }};\n'
         "/* End PBXContainerItemProxy section */\n\n/* Begin PBXTargetDependency section */\n"
-        f'\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Luma */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};\n'
+        f'\t\t{ids["target_dep"]} /* PBXTargetDependency */ = {{isa = PBXTargetDependency; target = {ids["app_target"]} /* Dawt */; targetProxy = {ids["container"]} /* PBXContainerItemProxy */; }};\n'
         "/* End PBXTargetDependency section */",
     )
 

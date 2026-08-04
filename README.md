@@ -1,15 +1,15 @@
-# Luma
+# dawt
 
 Free, open-source cycle health app for iOS — inspired by Flo’s product surface, not affiliated with Flo Health.
 
-**Status:** Phase 0 + Phase 1 MVP scaffold. Open [`ios/Luma/Luma.xcodeproj`](ios/Luma/Luma.xcodeproj) in Xcode to run on a simulator or device.
+**Status:** Phase 0 + Phase 1 MVP scaffold. Open [`ios/Dawt/Dawt.xcodeproj`](ios/Dawt/Dawt.xcodeproj) in Xcode to run on a simulator or device.
 
 ## What’s in this repo
 
 | Path | Purpose |
 |---|---|
-| [`ios/Luma`](ios/Luma) | SwiftUI iOS app (Today, Calendar, Day Log, Insights, AI Assistant, Settings) |
-| [`Sources/LumaCore`](Sources/LumaCore) | Shared prediction / catalog / safety logic (SPM) |
+| [`ios/Dawt`](ios/Dawt) | SwiftUI iOS app (Today, Calendar, Day Log, Insights, AI Assistant, Settings) |
+| [`Sources/DawtCore`](Sources/DawtCore) | Shared prediction / catalog / safety logic (SPM) |
 | [`supabase`](supabase) | Postgres schema + AI gateway Edge Function |
 | [`scripts`](scripts) | Xcode project generator, AI eval harness |
 
@@ -31,7 +31,7 @@ Free, open-source cycle health app for iOS — inspired by Flo’s product surfa
 python3 scripts/generate_xcodeproj.py
 
 # Open in Xcode
-open ios/Luma/Luma.xcodeproj
+open ios/Dawt/Dawt.xcodeproj
 ```
 
 Select an iPhone simulator or your device, then Run.
@@ -52,16 +52,16 @@ python3 scripts/ai_eval.py
 ## Supabase (optional cloud sync + AI gateway)
 
 1. Create a Supabase project.
-2. Apply [`supabase/migrations/20260804120000_luma_init.sql`](supabase/migrations/20260804120000_luma_init.sql).
+2. Apply [`supabase/migrations/20260804120000_dawt_init.sql`](supabase/migrations/20260804120000_dawt_init.sql).
 3. Run an open-weight server locally, e.g. `ollama pull llama3.2 && ollama serve`.
-4. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `LUMA_OSS_BASE_URL` (e.g. your Ollama/vLLM OpenAI-compatible URL) and `LUMA_OSS_MODEL` (default `llama3.2`).
-5. In the app Settings, pick **Ollama**, **Self-hosted open-weight**, or **Luma gateway**; set `LUMA_AI_GATEWAY_URL` when using the gateway.
+4. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `DAWT_OSS_BASE_URL` (e.g. your Ollama/vLLM OpenAI-compatible URL) and `DAWT_OSS_MODEL` (default `llama3.2`).
+5. In the app Settings, pick **Ollama**, **Self-hosted open-weight**, or **dawt gateway**; set `DAWT_AI_GATEWAY_URL` when using the gateway.
 
 Closed-source hosted model APIs are intentionally unsupported.
 
 ## Trademark notice
 
-Not affiliated with Flo Health UK Limited. Do not ship Flo brand assets or trademarks. Working name: **Luma**.
+Not affiliated with Flo Health UK Limited. Do not ship Flo brand assets or trademarks. Product name: **dawt**.
 
 ## License
 

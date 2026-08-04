@@ -25,7 +25,7 @@ Package.resolved
 Secrets.xcconfig
 
 # Exports / local
-luma-export.json
+dawt-export.json
 ios/Luma/Luma.xcodeproj/project.xcworkspace/xcuserdata/
 
 # Local-only product docs (not published to GitHub)

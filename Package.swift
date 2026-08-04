@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "LumaCore",
+    name: "DawtCore",
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
-        .library(name: "LumaCore", targets: ["LumaCore"])
+        .library(name: "DawtCore", targets: ["DawtCore"])
     ],
     targets: [
         .target(
-            name: "LumaCore",
-            path: "Sources/LumaCore"
+            name: "DawtCore",
+            path: "Sources/DawtCore"
         ),
         .testTarget(
-            name: "LumaCoreTests",
-            dependencies: ["LumaCore"],
-            path: "Tests/LumaCoreTests"
+            name: "DawtCoreTests",
+            dependencies: ["DawtCore"],
+            path: "Tests/DawtCoreTests"
         )
     ]
 )
