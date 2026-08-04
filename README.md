@@ -1,30 +1,67 @@
 # Luma
 
-Free, open-source cycle health app for iOS (Android later)—inspired by the product surface of Flo, built to be inspectable, account-synced, and AI-capable from day one.
+Free, open-source cycle health app for iOS — inspired by Flo’s product surface, not affiliated with Flo Health.
 
-**Status:** Pre-implementation. Product requirements live in [docs/PRD.md](docs/PRD.md).
+**Status:** Phase 0 + Phase 1 MVP scaffold. Open [`ios/Luma/Luma.xcodeproj`](ios/Luma/Luma.xcodeproj) in Xcode to run on a simulator or device.
 
-## Mission
+## What’s in this repo
 
-Track periods, symptoms, and life-stage changes; get predictions and educational insights; ask a **model-agnostic** Health Assistant; own and export your data. No paywall on core tracking or AI.
+| Path | Purpose |
+|---|---|
+| [`docs/PRD.md`](docs/PRD.md) | Product requirements |
+| [`ios/Luma`](ios/Luma) | SwiftUI iOS app (Today, Calendar, Day Log, Insights, AI Assistant, Settings) |
+| [`Sources/LumaCore`](Sources/LumaCore) | Shared prediction / catalog / safety logic (SPM) |
+| [`supabase`](supabase) | Postgres schema + AI gateway Edge Function |
+| [`scripts`](scripts) | Xcode project generator, AI eval harness |
 
-## What’s decided
+## Features (v0.1)
 
-- **Full Flo-like parity**, delivered in phases (core + AI in Phase 1; TTC/pregnancy, social, Android later)
-- **Accounts + cloud sync** from day one, with a local cache for offline / low-bandwidth use
-- **AI from day one**, provider-pluggable (org gateway, BYOK, on-device when available)
-- **iOS first** (SwiftUI)
+- Onboarding (goal, last period, cycle/period length, disclaimer, teen mode)
+- Today home with cycle ring, phase, predictions, daily insight
+- Calendar with period / fertile / ovulation markers
+- Day log with **70+** symptoms & moods
+- Model-agnostic Health Assistant (offline mock by default; gateway / OpenAI-compatible / Anthropic / on-device stubs)
+- Local persistence + sync outbox (Supabase-ready)
+- JSON export and delete-all
+- GPL-3.0 client / AGPL-3.0 server licenses
 
-Read the full spec: **[Product Requirements Document](docs/PRD.md)**.
+## Quick start (iOS)
+
+```bash
+# Regenerate the Xcode project if sources changed
+python3 scripts/generate_xcodeproj.py
+
+# Open in Xcode
+open ios/Luma/Luma.xcodeproj
+```
+
+Select an iPhone simulator or your device, then Run.
+
+If Xcode reports the iOS platform is missing:
+
+```bash
+xcodebuild -downloadPlatform iOS
+```
+
+## Core tests (no simulator required)
+
+```bash
+swift test
+python3 scripts/ai_eval.py
+```
+
+## Supabase (optional cloud sync + AI gateway)
+
+1. Create a Supabase project.
+2. Apply [`supabase/migrations/20260804120000_luma_init.sql`](supabase/migrations/20260804120000_luma_init.sql).
+3. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` secrets.
+4. In the app Settings, set Supabase URL and enable cloud sync; set `LUMA_AI_GATEWAY_URL` for the gateway provider.
 
 ## Trademark notice
 
-This project is **not** affiliated with, endorsed by, or related to Flo Health UK Limited. “Flo” is used only as a functional reference. We will not ship under the Flo trademark or copy Flo’s proprietary brand assets, illustrations, or copyrighted copy. Working product name: **Luma** (may change before public launch).
+Not affiliated with Flo Health UK Limited. Do not ship Flo brand assets or trademarks. Working name: **Luma**.
 
 ## License
 
-Intent: **GPL-3.0** for the client; **AGPL-3.0** for server / Edge Function code if publicly hosted. License files will land in Phase 0.
-
-## Contributing
-
-Not open for code contributions until Phase 0 scaffolding lands. Feedback on the PRD is welcome via issues once the remote repository is published.
+- App & core: [GPL-3.0](LICENSE)
+- Server / Edge Functions: [AGPL-3.0](server/LICENSE)

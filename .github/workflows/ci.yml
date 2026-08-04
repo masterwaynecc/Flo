@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  core:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift tests
+        run: swift test
+      - name: AI safety eval
+        run: python3 scripts/ai_eval.py
+      - name: Generate Xcode project
+        run: python3 scripts/generate_xcodeproj.py
+
+  ios:
+    runs-on: macos-15
+    needs: core
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Xcode project
+        run: python3 scripts/generate_xcodeproj.py
+      - name: Build iOS (simulator)
+        run: |
+          xcodebuild \
+            -project ios/Luma/Luma.xcodeproj \
+            -scheme Luma \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            CODE_SIGNING_ALLOWED=NO \
+            build

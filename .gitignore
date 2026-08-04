@@ -1,0 +1,29 @@
+# Xcode
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift / SPM
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+
+# macOS
+.DS_Store
+
+# Secrets
+.env
+.env.*
+*.pem
+Secrets.xcconfig
+
+# Exports / local
+luma-export.json
+ios/Luma/Luma.xcodeproj/project.xcworkspace/xcuserdata/
