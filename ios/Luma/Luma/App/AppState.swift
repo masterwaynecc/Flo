@@ -49,9 +49,7 @@ final class AppState: ObservableObject {
         profile.hasCompletedOnboarding = true
         hasCompletedOnboarding = true
 
-        if let start = draft.lastPeriodStart {
-            seedPeriodDays(from: start, length: draft.periodLength)
-        }
+        seedPeriodDays(from: draft.lastPeriodStart, length: draft.periodLength)
         persist()
         Task { await requestNotificationPermissionIfNeeded() }
     }
