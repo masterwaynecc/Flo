@@ -149,8 +149,8 @@ struct CatalogItem: Codable, Identifiable, Hashable {
 enum AIProviderKind: String, Codable, CaseIterable, Identifiable {
     case mock
     case gateway
-    case openAICompatible
-    case anthropic
+    case ollama
+    case selfHosted
     case appleOnDevice
 
     var id: String { rawValue }
@@ -158,9 +158,9 @@ enum AIProviderKind: String, Codable, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .mock: return "Built-in (offline demo)"
-        case .gateway: return "Luma gateway (org default)"
-        case .openAICompatible: return "OpenAI-compatible / BYOK"
-        case .anthropic: return "Anthropic"
+        case .gateway: return "Luma gateway (open-weight)"
+        case .ollama: return "Ollama (local open-weight)"
+        case .selfHosted: return "Self-hosted open-weight"
         case .appleOnDevice: return "Apple on-device"
         }
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-/// Proxies to Supabase Edge Function `ai-gateway`. Org keys never ship in the app.
+/// Proxies to Supabase Edge Function `ai-gateway` (open-weight backends only).
 struct GatewayAIProvider: AIProvider {
     let id = "gateway"
     var endpoint: URL? = ProcessInfo.processInfo.environment["LUMA_AI_GATEWAY_URL"]

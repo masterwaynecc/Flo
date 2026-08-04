@@ -61,16 +61,16 @@ final class AIRouter: ObservableObject {
 
     private let mock = MockAIProvider()
     private let gateway = GatewayAIProvider()
-    private let openAI = OpenAICompatibleProvider()
-    private let anthropic = AnthropicProvider()
+    private let ollama = OpenCompatibleProvider.ollama()
+    private let selfHosted = OpenCompatibleProvider.selfHosted()
     private let apple = AppleOnDeviceProvider()
 
     func provider(for kind: AIProviderKind) -> any AIProvider {
         switch kind {
         case .mock: return mock
         case .gateway: return gateway
-        case .openAICompatible: return openAI
-        case .anthropic: return anthropic
+        case .ollama: return ollama
+        case .selfHosted: return selfHosted
         case .appleOnDevice: return apple
         }
     }
@@ -122,6 +122,7 @@ enum AISafety {
     You do not diagnose, prescribe, or provide emergency care. You are not contraception advice.
     If the user describes an emergency, urge them to seek emergency services.
     Keep answers concise, compassionate, and evidence-informed at a general education level.
+    Prefer open knowledge; do not claim proprietary medical authority.
     """
 
     static let teenAddon = """

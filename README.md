@@ -20,7 +20,7 @@ Free, open-source cycle health app for iOS — inspired by Flo’s product surfa
 - Today home with cycle ring, phase, predictions, daily insight
 - Calendar with period / fertile / ovulation markers
 - Day log with **70+** symptoms & moods
-- Model-agnostic Health Assistant (offline mock by default; gateway / OpenAI-compatible / Anthropic / on-device stubs)
+- Model-agnostic Health Assistant using **open-weight models only** (offline mock by default; Ollama / self-hosted / gateway / on-device stubs — no OpenAI/Anthropic)
 - Local persistence + sync outbox (Supabase-ready)
 - JSON export and delete-all
 - GPL-3.0 client / AGPL-3.0 server licenses
@@ -54,8 +54,11 @@ python3 scripts/ai_eval.py
 
 1. Create a Supabase project.
 2. Apply [`supabase/migrations/20260804120000_luma_init.sql`](supabase/migrations/20260804120000_luma_init.sql).
-3. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` secrets.
-4. In the app Settings, set Supabase URL and enable cloud sync; set `LUMA_AI_GATEWAY_URL` for the gateway provider.
+3. Run an open-weight server locally, e.g. `ollama pull llama3.2 && ollama serve`.
+4. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `LUMA_OSS_BASE_URL` (e.g. your Ollama/vLLM OpenAI-compatible URL) and `LUMA_OSS_MODEL` (default `llama3.2`).
+5. In the app Settings, pick **Ollama**, **Self-hosted open-weight**, or **Luma gateway**; set `LUMA_AI_GATEWAY_URL` when using the gateway.
+
+Closed-source hosted model APIs are intentionally unsupported.
 
 ## Trademark notice
 

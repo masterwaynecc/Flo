@@ -23,14 +23,14 @@ struct SettingsView: View {
                         Stepper("Period length: \(appState.profile.typicalPeriodLength)d", value: $appState.profile.typicalPeriodLength, in: 2...10)
                     }
 
-                    Section("AI provider") {
+                    Section("AI provider (open-weight only)") {
                         Picker("Provider", selection: $appState.profile.aiProviderPreference) {
                             ForEach(AIProviderKind.allCases) { kind in
                                 Text(kind.title).tag(kind)
                             }
                         }
                         Toggle("Share cycle context with AI", isOn: $appState.profile.aiContextConsent)
-                        Text("Org gateway keys stay on the server. BYOK providers need configuration before use; Mock works offline.")
+                        Text("Luma uses open-weight models only (Ollama, vLLM, self-hosted, on-device). Closed-source APIs like OpenAI/Anthropic are not supported. Mock works offline without a model server.")
                             .font(LumaType.body(12))
                             .foregroundStyle(LumaColor.inkMuted)
                     }

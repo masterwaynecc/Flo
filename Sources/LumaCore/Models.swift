@@ -130,6 +130,6 @@ public struct CatalogItem: Codable, Identifiable, Hashable, Sendable {
 }
 
 public enum AIProviderKind: String, Codable, CaseIterable, Identifiable, Sendable {
-    case mock, gateway, openAICompatible, anthropic, appleOnDevice
+    case mock, gateway, ollama, selfHosted, appleOnDevice
     public var id: String { rawValue }
 }

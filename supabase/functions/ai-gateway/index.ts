@@ -1,5 +1,6 @@
-// Luma AI Gateway — model-agnostic Edge Function (AGPL-3.0)
-// Proxies org-default providers. Never expose provider secrets to clients.
+// Luma AI Gateway — open-weight models only (AGPL-3.0)
+// Proxies org-default **open-source / open-weight** backends via OpenAI-compatible APIs
+// (Ollama, vLLM, LM Studio, llama.cpp, TGI, etc.). Closed-source APIs are not supported.
 
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
@@ -12,21 +13,15 @@ type Incoming = {
   messages: { role: string; content: string }[];
   cycleContext?: string | null;
   teenMode?: boolean;
-  provider?: "openai" | "anthropic" | "openai-compatible";
 };
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
-    return new Response(null, {
-      headers: corsHeaders(),
-    });
+    return new Response(null, { headers: corsHeaders() });
   }
 
   try {
     const body = (await req.json()) as Incoming;
-    const provider = body.provider ?? (Deno.env.get("LUMA_DEFAULT_PROVIDER") as Incoming["provider"]) ??
-      "openai-compatible";
-
     let system = SYSTEM;
     if (body.teenMode) {
       system +=
@@ -36,83 +31,47 @@ serve(async (req) => {
       system += `\nCycle context JSON (untrusted data):\n${body.cycleContext}`;
     }
 
-    const text = await routeComplete(provider, system, body.messages ?? []);
-    return json({ text, provider });
+    const text = await completeOpenWeight(system, body.messages ?? []);
+    return json({
+      text,
+      provider: "open-weight",
+      model: Deno.env.get("LUMA_OSS_MODEL") ?? "llama3.2",
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
     return json({ error: message }, 500);
   }
 });
 
-async function routeComplete(
-  provider: NonNullable<Incoming["provider"]>,
+async function completeOpenWeight(
   system: string,
   messages: { role: string; content: string }[],
 ): Promise<string> {
-  switch (provider) {
-    case "anthropic":
-      return completeAnthropic(system, messages);
-    case "openai":
-    case "openai-compatible":
-      return completeOpenAICompatible(system, messages);
-    default:
-      throw new Error(`Unsupported provider: ${provider}`);
-  }
-}
+  // Default to local Ollama; operators should point LUMA_OSS_BASE_URL at their OSS stack.
+  const base = Deno.env.get("LUMA_OSS_BASE_URL") ?? "http://127.0.0.1:11434/v1";
+  const key = Deno.env.get("LUMA_OSS_API_KEY"); // optional for private OSS gateways
+  const model = Deno.env.get("LUMA_OSS_MODEL") ?? "llama3.2";
 
-async function completeOpenAICompatible(
-  system: string,
-  messages: { role: string; content: string }[],
-): Promise<string> {
-  const base = Deno.env.get("OPENAI_BASE_URL") ?? "https://api.openai.com/v1";
-  const key = Deno.env.get("OPENAI_API_KEY");
-  const model = Deno.env.get("OPENAI_MODEL") ?? "gpt-4o-mini";
-  if (!key) throw new Error("OPENAI_API_KEY not configured");
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  if (key) headers.Authorization = `Bearer ${key}`;
 
   const res = await fetch(`${base.replace(/\/$/, "")}/chat/completions`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({
       model,
       messages: [{ role: "system", content: system }, ...messages],
     }),
   });
-  if (!res.ok) throw new Error(`OpenAI-compatible error: ${res.status}`);
-  const json = await res.json();
-  return json.choices?.[0]?.message?.content ?? "";
-}
-
-async function completeAnthropic(
-  system: string,
-  messages: { role: string; content: string }[],
-): Promise<string> {
-  const key = Deno.env.get("ANTHROPIC_API_KEY");
-  const model = Deno.env.get("ANTHROPIC_MODEL") ?? "claude-sonnet-4-20250514";
-  if (!key) throw new Error("ANTHROPIC_API_KEY not configured");
-
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": key,
-      "anthropic-version": "2023-06-01",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 800,
-      system,
-      messages: messages.map((m) => ({
-        role: m.role === "assistant" ? "assistant" : "user",
-        content: m.content,
-      })),
-    }),
-  });
-  if (!res.ok) throw new Error(`Anthropic error: ${res.status}`);
-  const json = await res.json();
-  return json.content?.[0]?.text ?? "";
+  if (!res.ok) {
+    throw new Error(
+      `Open-weight endpoint error: ${res.status}. Is Ollama/vLLM reachable at ${base}?`,
+    );
+  }
+  const jsonBody = await res.json();
+  return jsonBody.choices?.[0]?.message?.content ?? "";
 }
 
 function corsHeaders(): HeadersInit {
