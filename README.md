@@ -8,7 +8,6 @@ Free, open-source cycle health app for iOS — inspired by Flo’s product surfa
 
 | Path | Purpose |
 |---|---|
-| [`docs/PRD.md`](docs/PRD.md) | Product requirements |
 | [`ios/Luma`](ios/Luma) | SwiftUI iOS app (Today, Calendar, Day Log, Insights, AI Assistant, Settings) |
 | [`Sources/LumaCore`](Sources/LumaCore) | Shared prediction / catalog / safety logic (SPM) |
 | [`supabase`](supabase) | Postgres schema + AI gateway Edge Function |

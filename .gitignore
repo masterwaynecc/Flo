@@ -27,3 +27,6 @@ Secrets.xcconfig
 # Exports / local
 luma-export.json
 ios/Luma/Luma.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Local-only product docs (not published to GitHub)
+docs/PRD.md

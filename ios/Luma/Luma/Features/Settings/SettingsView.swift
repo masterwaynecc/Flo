@@ -76,7 +76,7 @@ struct SettingsView: View {
                         Text("Luma is free and open source. Not affiliated with Flo Health. Educational only — not medical advice or contraception.")
                             .font(LumaType.body(12))
                             .foregroundStyle(LumaColor.inkMuted)
-                        Link("Product requirements", destination: URL(string: "https://github.com/masterwaynecc/Flo/blob/main/docs/PRD.md")!)
+                        Link("Source on GitHub", destination: URL(string: "https://github.com/masterwaynecc/Flo")!)
                     }
                 }
                 .scrollContentBackground(.hidden)
