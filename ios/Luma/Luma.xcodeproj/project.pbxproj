@@ -1,103 +1,98 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {};
+	classes = {
+	};
 	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13486CAA156C4A5DA1227FA5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C17EF6AE24CC5A9803BDF /* AppState.swift */; };
-		F2B977C4CD984CDBB9D648E6 /* LumaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309EC07BA3C74B0281208146 /* LumaApp.swift */; };
-		52A341FFF5EC4C9AB9FE1C7C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBE07184D3A46EDB7413F6D /* RootView.swift */; };
-		B088249DD0054DAEA422A383 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE35EC4F62D64DABA2063101 /* DesignTokens.swift */; };
-		BF8C7811AF97446CB1F1A854 /* AssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B706FD6BD4E52A5436E11 /* AssistantView.swift */; };
-		420ABBA355324091B484864E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0EB7B0F854A22B5C5A60D /* CalendarView.swift */; };
-		92026F19DB7847A1A1D9913C /* DayLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A68430577C44FE86D8D85D /* DayLogView.swift */; };
-		8E7E47516F254DCC94EFC7BE /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B72CDD56AF40E5A7B7E7DA /* InsightsView.swift */; };
 		1091BA30DB7D40DAB2288A43 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4273F3DF1A8C4FE0802014C3 /* OnboardingFlowView.swift */; };
-		48DE3C3985BD498E978DA9C2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670EC78D6A08425C9014F9EF /* SettingsView.swift */; };
-		5944126A5684402DABE62712 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFD674B5044246B8B9C95F /* TodayView.swift */; };
-		A8388254E67C47BC8B8FD601 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED96C618E06402AAA3A91BB /* Models.swift */; };
-		BFD965DD4E224B15AF9E9A09 /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25B082D81F2427C828C3E97 /* AIProvider.swift */; };
-		E4A19415BEF247E89D1C9979 /* AppleOnDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6789CD0FCB4CE4839B72F2 /* AppleOnDeviceProvider.swift */; };
+		13486CAA156C4A5DA1227FA5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C17EF6AE24CC5A9803BDF /* AppState.swift */; };
 		416DEC6A02324740B316093B /* GatewayAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE80B8F7DA64569A6DF32AB /* GatewayAIProvider.swift */; };
+		420ABBA355324091B484864E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A0EB7B0F854A22B5C5A60D /* CalendarView.swift */; };
 		4688C60FA0264530B485A5E9 /* MockAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6414398DEDC4414ABA6F9132 /* MockAIProvider.swift */; };
+		48DE3C3985BD498E978DA9C2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670EC78D6A08425C9014F9EF /* SettingsView.swift */; };
+		507CCC39B8D54FACA9C1701C /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFACFBF33547A39DDA7088 /* CyclePredictionEngineTests.swift */; };
+		52A341FFF5EC4C9AB9FE1C7C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBE07184D3A46EDB7413F6D /* RootView.swift */; };
+		563696F0B58343048E82A0B9 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F5BD476B84A77A43F1A58 /* NotificationScheduler.swift */; };
+		5944126A5684402DABE62712 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFD674B5044246B8B9C95F /* TodayView.swift */; };
+		5BD15C82BAD0495E86F7A85D /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C8E58BCE8B4A7E8452CFD9 /* InsightEngine.swift */; };
+		607603B98F1B4321A9399619 /* SymptomCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E1FF15C9904BB3AE3694B5 /* SymptomCatalog.swift */; };
 		611AC1786E064C9BB557CDF8 /* OpenCompatibleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3A097A81940C096FDA7FB /* OpenCompatibleProvider.swift */; };
 		68455A7A4B394254BC3BE73E /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17224EFDBC4C4669A2ACDC86 /* CyclePredictionEngine.swift */; };
-		5BD15C82BAD0495E86F7A85D /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C8E58BCE8B4A7E8452CFD9 /* InsightEngine.swift */; };
+		8E7E47516F254DCC94EFC7BE /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B72CDD56AF40E5A7B7E7DA /* InsightsView.swift */; };
+		92026F19DB7847A1A1D9913C /* DayLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A68430577C44FE86D8D85D /* DayLogView.swift */; };
 		97E226F8C713489EB4349DA2 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55657C17C9E04351A9F2056E /* LocalStore.swift */; };
-		563696F0B58343048E82A0B9 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F5BD476B84A77A43F1A58 /* NotificationScheduler.swift */; };
-		607603B98F1B4321A9399619 /* SymptomCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E1FF15C9904BB3AE3694B5 /* SymptomCatalog.swift */; };
+		99287AAD45F54BD99979CC54 /* Luma/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D915C8CB90CD4F9FAB6F1E6C /* Luma/Assets.xcassets */; };
 		9F0981333F094DBCAF9DBAB6 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDB5AE657B84964913BF599 /* SyncService.swift */; };
-		99287AAD45F54BD99979CC54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D915C8CB90CD4F9FAB6F1E6C /* Assets.xcassets */; };
-		507CCC39B8D54FACA9C1701C /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFACFBF33547A39DDA7088 /* CyclePredictionEngineTests.swift */; };
+		A8388254E67C47BC8B8FD601 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED96C618E06402AAA3A91BB /* Models.swift */; };
+		B088249DD0054DAEA422A383 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE35EC4F62D64DABA2063101 /* DesignTokens.swift */; };
+		BF8C7811AF97446CB1F1A854 /* AssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B706FD6BD4E52A5436E11 /* AssistantView.swift */; };
+		BFD965DD4E224B15AF9E9A09 /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25B082D81F2427C828C3E97 /* AIProvider.swift */; };
+		E4A19415BEF247E89D1C9979 /* AppleOnDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6789CD0FCB4CE4839B72F2 /* AppleOnDeviceProvider.swift */; };
+		F2B977C4CD984CDBB9D648E6 /* LumaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309EC07BA3C74B0281208146 /* LumaApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		963483172A8D448F880D7DC2 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 4F38E2A6537045948EEEB13B /* Project object */; proxyType = 1; remoteGlobalIDString = EF81D28774434C4791A2AED8; remoteInfo = Luma; };
+		963483172A8D448F880D7DC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F38E2A6537045948EEEB13B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF81D28774434C4791A2AED8;
+			remoteInfo = Luma;
+		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXTargetDependency section */
-		F76D60545B1348BBB72B3650 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = EF81D28774434C4791A2AED8 /* Luma */; targetProxy = 963483172A8D448F880D7DC2 /* PBXContainerItemProxy */; };
-/* End PBXTargetDependency section */
-
 /* Begin PBXFileReference section */
-		F90C17EF6AE24CC5A9803BDF /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppState.swift"; path = "Luma/App/AppState.swift"; sourceTree = "<group>"; };
-		309EC07BA3C74B0281208146 /* LumaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LumaApp.swift"; path = "Luma/App/LumaApp.swift"; sourceTree = "<group>"; };
-		ABBE07184D3A46EDB7413F6D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "Luma/App/RootView.swift"; sourceTree = "<group>"; };
-		DE35EC4F62D64DABA2063101 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DesignTokens.swift"; path = "Luma/Design/DesignTokens.swift"; sourceTree = "<group>"; };
-		3B2B706FD6BD4E52A5436E11 /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AssistantView.swift"; path = "Luma/Features/Assistant/AssistantView.swift"; sourceTree = "<group>"; };
-		99A0EB7B0F854A22B5C5A60D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CalendarView.swift"; path = "Luma/Features/Calendar/CalendarView.swift"; sourceTree = "<group>"; };
-		E2A68430577C44FE86D8D85D /* DayLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DayLogView.swift"; path = "Luma/Features/DayLog/DayLogView.swift"; sourceTree = "<group>"; };
-		F5B72CDD56AF40E5A7B7E7DA /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightsView.swift"; path = "Luma/Features/Insights/InsightsView.swift"; sourceTree = "<group>"; };
-		4273F3DF1A8C4FE0802014C3 /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingFlowView.swift"; path = "Luma/Features/Onboarding/OnboardingFlowView.swift"; sourceTree = "<group>"; };
-		670EC78D6A08425C9014F9EF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Luma/Features/Settings/SettingsView.swift"; sourceTree = "<group>"; };
-		BBCFD674B5044246B8B9C95F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodayView.swift"; path = "Luma/Features/Today/TodayView.swift"; sourceTree = "<group>"; };
-		4ED96C618E06402AAA3A91BB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Models.swift"; path = "Luma/Models/Models.swift"; sourceTree = "<group>"; };
-		B25B082D81F2427C828C3E97 /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AIProvider.swift"; path = "Luma/Services/AI/AIProvider.swift"; sourceTree = "<group>"; };
-		FD6789CD0FCB4CE4839B72F2 /* AppleOnDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppleOnDeviceProvider.swift"; path = "Luma/Services/AI/AppleOnDeviceProvider.swift"; sourceTree = "<group>"; };
-		8EE80B8F7DA64569A6DF32AB /* GatewayAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GatewayAIProvider.swift"; path = "Luma/Services/AI/GatewayAIProvider.swift"; sourceTree = "<group>"; };
-		6414398DEDC4414ABA6F9132 /* MockAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MockAIProvider.swift"; path = "Luma/Services/AI/MockAIProvider.swift"; sourceTree = "<group>"; };
-		5AD3A097A81940C096FDA7FB /* OpenCompatibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OpenCompatibleProvider.swift"; path = "Luma/Services/AI/OpenCompatibleProvider.swift"; sourceTree = "<group>"; };
-		17224EFDBC4C4669A2ACDC86 /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngine.swift"; path = "Luma/Services/CyclePredictionEngine.swift"; sourceTree = "<group>"; };
-		17C8E58BCE8B4A7E8452CFD9 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightEngine.swift"; path = "Luma/Services/InsightEngine.swift"; sourceTree = "<group>"; };
-		55657C17C9E04351A9F2056E /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LocalStore.swift"; path = "Luma/Services/LocalStore.swift"; sourceTree = "<group>"; };
-		2C2F5BD476B84A77A43F1A58 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationScheduler.swift"; path = "Luma/Services/NotificationScheduler.swift"; sourceTree = "<group>"; };
-		C6E1FF15C9904BB3AE3694B5 /* SymptomCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SymptomCatalog.swift"; path = "Luma/Services/SymptomCatalog.swift"; sourceTree = "<group>"; };
-		9DDB5AE657B84964913BF599 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SyncService.swift"; path = "Luma/Services/SyncService.swift"; sourceTree = "<group>"; };
-		9FEFACFBF33547A39DDA7088 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngineTests.swift"; path = "../../Tests/LumaTests/CyclePredictionEngineTests.swift"; sourceTree = "<group>"; };
-		D915C8CB90CD4F9FAB6F1E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Luma/Assets.xcassets; sourceTree = "<group>"; };
-		87F4A70657904886A0A1FF94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Luma/Info.plist; sourceTree = "<group>"; };
-		C6ED8EF4EB5D45BB99532CC9 /* Luma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17224EFDBC4C4669A2ACDC86 /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngine.swift; path = Luma/Services/CyclePredictionEngine.swift; sourceTree = "<group>"; };
+		17C8E58BCE8B4A7E8452CFD9 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsightEngine.swift; path = Luma/Services/InsightEngine.swift; sourceTree = "<group>"; };
+		2C2F5BD476B84A77A43F1A58 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationScheduler.swift; path = Luma/Services/NotificationScheduler.swift; sourceTree = "<group>"; };
+		309EC07BA3C74B0281208146 /* LumaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LumaApp.swift; path = Luma/App/LumaApp.swift; sourceTree = "<group>"; };
+		3B2B706FD6BD4E52A5436E11 /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssistantView.swift; path = Luma/Features/Assistant/AssistantView.swift; sourceTree = "<group>"; };
+		4273F3DF1A8C4FE0802014C3 /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingFlowView.swift; path = Luma/Features/Onboarding/OnboardingFlowView.swift; sourceTree = "<group>"; };
+		4ED96C618E06402AAA3A91BB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Luma/Models/Models.swift; sourceTree = "<group>"; };
+		55657C17C9E04351A9F2056E /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalStore.swift; path = Luma/Services/LocalStore.swift; sourceTree = "<group>"; };
+		5AD3A097A81940C096FDA7FB /* OpenCompatibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OpenCompatibleProvider.swift; path = Luma/Services/AI/OpenCompatibleProvider.swift; sourceTree = "<group>"; };
+		6414398DEDC4414ABA6F9132 /* MockAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockAIProvider.swift; path = Luma/Services/AI/MockAIProvider.swift; sourceTree = "<group>"; };
+		670EC78D6A08425C9014F9EF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Luma/Features/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		87F4A70657904886A0A1FF94 /* Luma/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Luma/Info.plist; sourceTree = "<group>"; };
 		8BF2BE17FCB74A76B42CFFB1 /* LumaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EE80B8F7DA64569A6DF32AB /* GatewayAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GatewayAIProvider.swift; path = Luma/Services/AI/GatewayAIProvider.swift; sourceTree = "<group>"; };
+		99A0EB7B0F854A22B5C5A60D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = Luma/Features/Calendar/CalendarView.swift; sourceTree = "<group>"; };
+		9DDB5AE657B84964913BF599 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SyncService.swift; path = Luma/Services/SyncService.swift; sourceTree = "<group>"; };
+		9FEFACFBF33547A39DDA7088 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CyclePredictionEngineTests.swift; path = ../../Tests/LumaTests/CyclePredictionEngineTests.swift; sourceTree = "<group>"; };
+		ABBE07184D3A46EDB7413F6D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = Luma/App/RootView.swift; sourceTree = "<group>"; };
+		B25B082D81F2427C828C3E97 /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AIProvider.swift; path = Luma/Services/AI/AIProvider.swift; sourceTree = "<group>"; };
+		BBCFD674B5044246B8B9C95F /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodayView.swift; path = Luma/Features/Today/TodayView.swift; sourceTree = "<group>"; };
+		C6E1FF15C9904BB3AE3694B5 /* SymptomCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SymptomCatalog.swift; path = Luma/Services/SymptomCatalog.swift; sourceTree = "<group>"; };
+		C6ED8EF4EB5D45BB99532CC9 /* Luma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D915C8CB90CD4F9FAB6F1E6C /* Luma/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Luma/Assets.xcassets; sourceTree = "<group>"; };
+		DE35EC4F62D64DABA2063101 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DesignTokens.swift; path = Luma/Design/DesignTokens.swift; sourceTree = "<group>"; };
+		E2A68430577C44FE86D8D85D /* DayLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayLogView.swift; path = Luma/Features/DayLog/DayLogView.swift; sourceTree = "<group>"; };
+		F5B72CDD56AF40E5A7B7E7DA /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsightsView.swift; path = Luma/Features/Insights/InsightsView.swift; sourceTree = "<group>"; };
+		F90C17EF6AE24CC5A9803BDF /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = Luma/App/AppState.swift; sourceTree = "<group>"; };
+		FD6789CD0FCB4CE4839B72F2 /* AppleOnDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppleOnDeviceProvider.swift; path = Luma/Services/AI/AppleOnDeviceProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		567EC74DAB6943A7BD88CEB8 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
-		5B7DF05EF9D64A3BBB98693E /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		567EC74DAB6943A7BD88CEB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7DF05EF9D64A3BBB98693E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		817134631D2B47CF808CB2E1 = {
-			isa = PBXGroup;
-			children = (
-				061C5DE8D99948E5A46652CD /* Sources */,
-				A802EC138C7043979E0F9A10 /* Tests */,
-				D915C8CB90CD4F9FAB6F1E6C /* Assets.xcassets */,
-				87F4A70657904886A0A1FF94 /* Info.plist */,
-				E46D336F48C44455BF5EBE19 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E46D336F48C44455BF5EBE19 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C6ED8EF4EB5D45BB99532CC9 /* Luma.app */,
-				8BF2BE17FCB74A76B42CFFB1 /* LumaTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		061C5DE8D99948E5A46652CD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +123,17 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		817134631D2B47CF808CB2E1 = {
+			isa = PBXGroup;
+			children = (
+				061C5DE8D99948E5A46652CD /* Sources */,
+				A802EC138C7043979E0F9A10 /* Tests */,
+				D915C8CB90CD4F9FAB6F1E6C /* Luma/Assets.xcassets */,
+				87F4A70657904886A0A1FF94 /* Luma/Info.plist */,
+				E46D336F48C44455BF5EBE19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
 		A802EC138C7043979E0F9A10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,9 +142,35 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
+		E46D336F48C44455BF5EBE19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6ED8EF4EB5D45BB99532CC9 /* Luma.app */,
+				8BF2BE17FCB74A76B42CFFB1 /* LumaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1446ED12F3D6490D942F23B5 /* LumaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 924ECF9D000E43D0996A26ED /* Build configuration list for PBXNativeTarget "LumaTests" */;
+			buildPhases = (
+				5CBBCE33E73F4EF59E61A5C8 /* Sources */,
+				5B7DF05EF9D64A3BBB98693E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F76D60545B1348BBB72B3650 /* PBXTargetDependency */,
+			);
+			name = LumaTests;
+			productName = LumaTests;
+			productReference = 8BF2BE17FCB74A76B42CFFB1 /* LumaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EF81D28774434C4791A2AED8 /* Luma */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A4C1A7DB4CB462B8E999D65 /* Build configuration list for PBXNativeTarget "Luma" */;
@@ -147,28 +179,14 @@
 				567EC74DAB6943A7BD88CEB8 /* Frameworks */,
 				64296CCF51054079B3816264 /* Resources */,
 			);
-			buildRules = ();
-			dependencies = ();
+			buildRules = (
+			);
+			dependencies = (
+			);
 			name = Luma;
 			productName = Luma;
 			productReference = C6ED8EF4EB5D45BB99532CC9 /* Luma.app */;
 			productType = "com.apple.product-type.application";
-		};
-		1446ED12F3D6490D942F23B5 /* LumaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 924ECF9D000E43D0996A26ED /* Build configuration list for PBXNativeTarget "LumaTests" */;
-			buildPhases = (
-				5CBBCE33E73F4EF59E61A5C8 /* Sources */,
-				5B7DF05EF9D64A3BBB98693E /* Frameworks */,
-			);
-			buildRules = ();
-			dependencies = (
-				F76D60545B1348BBB72B3650 /* PBXTargetDependency */,
-			);
-			name = LumaTests;
-			productName = LumaTests;
-			productReference = 8BF2BE17FCB74A76B42CFFB1 /* LumaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -180,15 +198,23 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					EF81D28774434C4791A2AED8 = { CreatedOnToolsVersion = 16.0; };
-					1446ED12F3D6490D942F23B5 = { CreatedOnToolsVersion = 16.0; TestTargetID = EF81D28774434C4791A2AED8; };
+					1446ED12F3D6490D942F23B5 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = EF81D28774434C4791A2AED8;
+					};
+					EF81D28774434C4791A2AED8 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 				};
 			};
 			buildConfigurationList = 61AB2A14DB1F4CEAB5C68DB9 /* Build configuration list for PBXProject "Luma" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
-			knownRegions = (en, Base);
+			knownRegions = (
+				en,
+				Base,
+			);
 			mainGroup = 817134631D2B47CF808CB2E1;
 			productRefGroup = E46D336F48C44455BF5EBE19 /* Products */;
 			projectDirPath = "";
@@ -205,116 +231,62 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99287AAD45F54BD99979CC54 /* Assets.xcassets in Resources */,
+				99287AAD45F54BD99979CC54 /* Luma/Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8C8C9826EAF34D6B851DF2AC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13486CAA156C4A5DA1227FA5 /* in Sources */,
-				F2B977C4CD984CDBB9D648E6 /* in Sources */,
-				52A341FFF5EC4C9AB9FE1C7C /* in Sources */,
-				B088249DD0054DAEA422A383 /* in Sources */,
-				BF8C7811AF97446CB1F1A854 /* in Sources */,
-				420ABBA355324091B484864E /* in Sources */,
-				92026F19DB7847A1A1D9913C /* in Sources */,
-				8E7E47516F254DCC94EFC7BE /* in Sources */,
-				1091BA30DB7D40DAB2288A43 /* in Sources */,
-				48DE3C3985BD498E978DA9C2 /* in Sources */,
-				5944126A5684402DABE62712 /* in Sources */,
-				A8388254E67C47BC8B8FD601 /* in Sources */,
-				BFD965DD4E224B15AF9E9A09 /* in Sources */,
-				E4A19415BEF247E89D1C9979 /* in Sources */,
-				416DEC6A02324740B316093B /* in Sources */,
-				4688C60FA0264530B485A5E9 /* in Sources */,
-				611AC1786E064C9BB557CDF8 /* in Sources */,
-				68455A7A4B394254BC3BE73E /* in Sources */,
-				5BD15C82BAD0495E86F7A85D /* in Sources */,
-				97E226F8C713489EB4349DA2 /* in Sources */,
-				563696F0B58343048E82A0B9 /* in Sources */,
-				607603B98F1B4321A9399619 /* in Sources */,
-				9F0981333F094DBCAF9DBAB6 /* in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5CBBCE33E73F4EF59E61A5C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				507CCC39B8D54FACA9C1701C /* in Sources */,
+				507CCC39B8D54FACA9C1701C /* CyclePredictionEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C8C9826EAF34D6B851DF2AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13486CAA156C4A5DA1227FA5 /* AppState.swift in Sources */,
+				F2B977C4CD984CDBB9D648E6 /* LumaApp.swift in Sources */,
+				52A341FFF5EC4C9AB9FE1C7C /* RootView.swift in Sources */,
+				B088249DD0054DAEA422A383 /* DesignTokens.swift in Sources */,
+				BF8C7811AF97446CB1F1A854 /* AssistantView.swift in Sources */,
+				420ABBA355324091B484864E /* CalendarView.swift in Sources */,
+				92026F19DB7847A1A1D9913C /* DayLogView.swift in Sources */,
+				8E7E47516F254DCC94EFC7BE /* InsightsView.swift in Sources */,
+				1091BA30DB7D40DAB2288A43 /* OnboardingFlowView.swift in Sources */,
+				48DE3C3985BD498E978DA9C2 /* SettingsView.swift in Sources */,
+				5944126A5684402DABE62712 /* TodayView.swift in Sources */,
+				A8388254E67C47BC8B8FD601 /* Models.swift in Sources */,
+				BFD965DD4E224B15AF9E9A09 /* AIProvider.swift in Sources */,
+				E4A19415BEF247E89D1C9979 /* AppleOnDeviceProvider.swift in Sources */,
+				416DEC6A02324740B316093B /* GatewayAIProvider.swift in Sources */,
+				4688C60FA0264530B485A5E9 /* MockAIProvider.swift in Sources */,
+				611AC1786E064C9BB557CDF8 /* OpenCompatibleProvider.swift in Sources */,
+				68455A7A4B394254BC3BE73E /* CyclePredictionEngine.swift in Sources */,
+				5BD15C82BAD0495E86F7A85D /* InsightEngine.swift in Sources */,
+				97E226F8C713489EB4349DA2 /* LocalStore.swift in Sources */,
+				563696F0B58343048E82A0B9 /* NotificationScheduler.swift in Sources */,
+				607603B98F1B4321A9399619 /* SymptomCatalog.swift in Sources */,
+				9F0981333F094DBCAF9DBAB6 /* SyncService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F76D60545B1348BBB72B3650 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF81D28774434C4791A2AED8 /* Luma */;
+			targetProxy = 963483172A8D448F880D7DC2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		798F7B92FD17478C889DA9E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		1301727A3BCE46488291B081 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-			};
-			name = Release;
-		};
-		90D3FB7F824246DF856447FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Luma/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		CA8117318C8B404A9BDF0B07 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Luma/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		0241DB3A3DD94FA58B3891DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -345,24 +317,103 @@
 			};
 			name = Release;
 		};
+		1301727A3BCE46488291B081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		798F7B92FD17478C889DA9E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		90D3FB7F824246DF856447FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N383VU93DN;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Luma/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CA8117318C8B404A9BDF0B07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N383VU93DN;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Luma/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.luma.cycle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		61AB2A14DB1F4CEAB5C68DB9 /* Build configuration list for PBXProject "Luma" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (798F7B92FD17478C889DA9E3 /* Debug */, 1301727A3BCE46488291B081 /* Release */);
+			buildConfigurations = (
+				798F7B92FD17478C889DA9E3 /* Debug */,
+				1301727A3BCE46488291B081 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		7A4C1A7DB4CB462B8E999D65 /* Build configuration list for PBXNativeTarget "Luma" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (90D3FB7F824246DF856447FD /* Debug */, CA8117318C8B404A9BDF0B07 /* Release */);
+			buildConfigurations = (
+				90D3FB7F824246DF856447FD /* Debug */,
+				CA8117318C8B404A9BDF0B07 /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		924ECF9D000E43D0996A26ED /* Build configuration list for PBXNativeTarget "LumaTests" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (0241DB3A3DD94FA58B3891DD /* Debug */, 06CD91674C0145CA85F14AEF /* Release */);
+			buildConfigurations = (
+				0241DB3A3DD94FA58B3891DD /* Debug */,
+				06CD91674C0145CA85F14AEF /* Release */,
+			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
