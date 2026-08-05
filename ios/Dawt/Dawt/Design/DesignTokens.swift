@@ -33,10 +33,17 @@ struct DawtBrandTitle: View {
     var color: Color = DawtColor.ink
 
     var body: some View {
-        Text("dawt")
+        Text("Dawt")
             .font(DawtType.brand(size))
             .foregroundStyle(color)
+            // Yellowtail’s D / t strokes sit outside font metrics; give them layout room.
+            .padding(.leading, size * 0.18)
+            .padding(.trailing, size * 0.32)
+            .padding(.top, size * 0.06)
+            .padding(.bottom, size * 0.14)
+            .fixedSize()
             .accessibilityAddTraits(.isHeader)
+            .accessibilityLabel("Dawt")
     }
 }
 

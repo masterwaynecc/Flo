@@ -12,8 +12,10 @@ struct TodayView: View {
                 DawtBackground()
                 ScrollView {
                     VStack(spacing: 20) {
+                        DawtBrandTitle(size: 40, color: DawtColor.ink)
+                            .padding(.top, 4)
+
                         CycleRingView(prediction: prediction)
-                            .padding(.top, 8)
 
                         VStack(spacing: 6) {
                             Text(prediction.phase.title.uppercased())
@@ -38,12 +40,7 @@ struct TodayView: View {
                     .padding(20)
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    DawtBrandTitle(size: 36, color: DawtColor.ink)
-                }
-            }
+            .toolbar(.hidden, for: .navigationBar)
         }
     }
 
