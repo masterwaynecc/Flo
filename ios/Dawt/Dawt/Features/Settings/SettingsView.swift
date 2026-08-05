@@ -4,14 +4,23 @@ struct SettingsView: View {
     @EnvironmentObject private var appState: AppState
     @State private var exportURL: URL?
     @State private var showDeleteConfirm = false
-    @State private var supabaseURL = ""
-    @State private var syncMessage = ""
 
     var body: some View {
         NavigationStack {
             ZStack {
                 DawtBackground()
                 List {
+                    AccountSectionView()
+
+                    Section {
+                        NavigationLink {
+                            PartnerSharingView()
+                                .environmentObject(appState)
+                        } label: {
+                            Label("Partner sharing", systemImage: "person.2.fill")
+                        }
+                    }
+
                     Section("Profile") {
                         Picker("Life stage", selection: $appState.profile.goal) {
                             ForEach(LifeStageGoal.allCases) { goal in
@@ -35,27 +44,11 @@ struct SettingsView: View {
                             .foregroundStyle(DawtColor.inkMuted)
                     }
 
-                    Section("Reminders & sync") {
+                    Section("Reminders") {
                         Toggle("Reminders", isOn: $appState.profile.remindersEnabled)
                             .onChange(of: appState.profile.remindersEnabled) { _, _ in
                                 NotificationScheduler.reschedule(profile: appState.profile, prediction: appState.prediction)
                             }
-                        TextField("Supabase URL (optional)", text: $supabaseURL)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled()
-                        Toggle("Cloud sync configured", isOn: $appState.profile.supabaseConfigured)
-                        Button("Sync now") {
-                            Task {
-                                await appState.syncService.syncNow(profile: appState.profile)
-                                syncMessage = appState.syncService.statusMessage
-                            }
-                        }
-                        if !syncMessage.isEmpty {
-                            Text(syncMessage).font(DawtType.body(12)).foregroundStyle(DawtColor.inkMuted)
-                        }
-                        Text("Pending local changes: \(appState.syncService.pendingCount)")
-                            .font(DawtType.body(12))
-                            .foregroundStyle(DawtColor.inkMuted)
                     }
 
                     Section("Data") {
@@ -73,6 +66,7 @@ struct SettingsView: View {
                     Section("About") {
                         LabeledContent("Catalog items", value: "\(SymptomCatalog.allCount)")
                         LabeledContent("Algorithm", value: CyclePredictionEngine.algorithmVersion)
+                        LabeledContent("Cloud", value: SupabaseConfig.isConfigured ? "Configured" : "Missing keys")
                         Text("dawt is free and open source. Not affiliated with Flo Health. Educational only — not medical advice or contraception.")
                             .font(DawtType.body(12))
                             .foregroundStyle(DawtColor.inkMuted)

@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import SwiftUI
 import UserNotifications
@@ -17,6 +18,9 @@ final class AppState: ObservableObject {
     let insightEngine: InsightEngine
     let syncService: SyncService
     let aiRouter: AIRouter
+    let authService: AuthService
+    let partnerService: PartnerService
+    private var cancellables = Set<AnyCancellable>()
 
     init(store: LocalStore = LocalStore()) {
         self.store = store
@@ -24,11 +28,30 @@ final class AppState: ObservableObject {
         self.insightEngine = InsightEngine()
         self.syncService = SyncService(store: store)
         self.aiRouter = AIRouter()
+        self.authService = AuthService()
+        self.partnerService = PartnerService()
 
         let loaded = store.load()
         self.hasCompletedOnboarding = loaded.profile.hasCompletedOnboarding
         self.profile = loaded.profile
         self.dayLogs = loaded.dayLogs
+
+        if SupabaseConfig.isConfigured {
+            profile.supabaseConfigured = true
+        }
+
+        authService.objectWillChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &cancellables)
+        partnerService.objectWillChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &cancellables)
+        syncService.objectWillChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &cancellables)
     }
 
     var prediction: CyclePrediction {
@@ -37,6 +60,15 @@ final class AppState: ObservableObject {
 
     var todayInsight: DailyInsight {
         insightEngine.insight(for: prediction, profile: profile, logs: dayLogs)
+    }
+
+    func bootstrap() async {
+        await authService.restoreSession()
+        applyPendingDisplayName()
+        if authService.isSignedIn {
+            await syncFromCloud()
+            await partnerService.refresh(session: authService.session)
+        }
     }
 
     func completeOnboarding(_ draft: OnboardingDraft) {
@@ -51,10 +83,13 @@ final class AppState: ObservableObject {
 
         seedPeriodDays(from: draft.lastPeriodStart, length: draft.periodLength)
         persist()
-        Task { await requestNotificationPermissionIfNeeded() }
+        Task {
+            await requestNotificationPermissionIfNeeded()
+            await syncFromCloud()
+        }
     }
 
-    func upsertDayLog(_ log: DayLog) {
+    func upsertDayLog(_ log: DayLog, sync: Bool = true) {
         if let idx = dayLogs.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: log.date) }) {
             dayLogs[idx] = log
         } else {
@@ -63,6 +98,9 @@ final class AppState: ObservableObject {
         }
         persist()
         syncService.enqueue(log)
+        if sync {
+            Task { await syncFromCloud() }
+        }
     }
 
     func logFor(date: Date) -> DayLog? {
@@ -83,11 +121,88 @@ final class AppState: ObservableObject {
         profile = UserProfile()
         dayLogs = []
         hasCompletedOnboarding = false
+        if SupabaseConfig.isConfigured {
+            profile.supabaseConfigured = true
+        }
         persist()
     }
 
     func persist() {
         store.save(profile: profile, dayLogs: dayLogs)
+    }
+
+    func signInWithApple() async {
+        await authService.signInWithApple()
+        applyPendingDisplayName()
+        if authService.isSignedIn {
+            profile.supabaseConfigured = true
+            persist()
+            await syncFromCloud()
+            await partnerService.refresh(session: authService.session)
+        }
+    }
+
+    func signOut() async {
+        await authService.signOut()
+        await partnerService.refresh(session: nil)
+    }
+
+    func syncFromCloud() async {
+        guard let remote = await syncService.syncNow(
+            session: authService.session,
+            profile: profile,
+            prediction: prediction,
+            allLogs: dayLogs
+        ) else { return }
+
+        dayLogs = mergeLogs(local: dayLogs, remote: remote)
+        if let latestPeriod = dayLogs.filter(\.flow.isPeriod).map(\.date).max() {
+            profile.lastPeriodStart = latestPeriodStart(from: dayLogs) ?? latestPeriod
+        }
+        persist()
+        await partnerService.refresh(session: authService.session)
+    }
+
+    private func applyPendingDisplayName() {
+        if let name = UserDefaults.standard.string(forKey: "dawt.pending.displayName"), !name.isEmpty {
+            profile.displayName = name
+            UserDefaults.standard.removeObject(forKey: "dawt.pending.displayName")
+            persist()
+        }
+    }
+
+    private func mergeLogs(local: [DayLog], remote: [DayLog]) -> [DayLog] {
+        var map: [String: DayLog] = [:]
+        let key: (DayLog) -> String = {
+            ISO8601DateFormatter().string(from: Calendar.current.startOfDay(for: $0.date))
+        }
+        for log in local { map[key(log)] = log }
+        for log in remote {
+            let k = key(log)
+            if let existing = map[k] {
+                map[k] = existing.updatedAt >= log.updatedAt ? existing : log
+            } else {
+                map[k] = log
+            }
+        }
+        return map.values.sorted { $0.date < $1.date }
+    }
+
+    private func latestPeriodStart(from logs: [DayLog]) -> Date? {
+        let cal = Calendar.current
+        let periodDays = logs.filter(\.flow.isPeriod).map { cal.startOfDay(for: $0.date) }.sorted()
+        var starts: [Date] = []
+        var previous: Date?
+        for day in periodDays {
+            if let previous {
+                let gap = cal.dateComponents([.day], from: previous, to: day).day ?? 0
+                if gap > 1 { starts.append(day) }
+            } else {
+                starts.append(day)
+            }
+            previous = day
+        }
+        return starts.last
     }
 
     private func seedPeriodDays(from start: Date, length: Int) {
@@ -96,7 +211,7 @@ final class AppState: ObservableObject {
             guard let day = cal.date(byAdding: .day, value: offset, to: cal.startOfDay(for: start)) else { continue }
             var log = logFor(date: day) ?? DayLog(date: day)
             log.flow = offset == 0 ? .medium : (offset < length - 1 ? .light : .spotting)
-            upsertDayLog(log)
+            upsertDayLog(log, sync: false)
         }
     }
 

@@ -1,12 +1,13 @@
 import Foundation
 
-/// Cloud sync scaffolding. Cloud is source of truth when Supabase is configured;
-/// otherwise mutations stay in a local outbox for later flush.
+/// Cloud sync with local outbox. Cloud is source of truth when signed in;
+/// mutations stay queued offline and flush when connectivity returns.
 @MainActor
 final class SyncService: ObservableObject {
     @Published private(set) var pendingCount: Int = 0
     @Published private(set) var lastSyncedAt: Date?
-    @Published private(set) var statusMessage: String = "Local only — configure Supabase to sync"
+    @Published private(set) var statusMessage: String = "Local only — sign in to sync"
+    @Published private(set) var isSyncing = false
 
     private let store: LocalStore
     private var outbox: [DayLog] = []
@@ -16,7 +17,9 @@ final class SyncService: ObservableObject {
         self.store = store
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? FileManager.default.temporaryDirectory
-        self.outboxURL = dir.appendingPathComponent("dawt/sync-outbox.json")
+        let folder = dir.appendingPathComponent("dawt", isDirectory: true)
+        try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        self.outboxURL = folder.appendingPathComponent("sync-outbox.json")
         loadOutbox()
     }
 
@@ -30,17 +33,44 @@ final class SyncService: ObservableObject {
         persistOutbox()
     }
 
-    func syncNow(profile: UserProfile) async {
-        guard profile.supabaseConfigured else {
-            statusMessage = "Add Supabase URL & key in Settings to enable cloud sync"
-            return
+    func syncNow(
+        session: SupabaseSession?,
+        profile: UserProfile,
+        prediction: CyclePrediction,
+        allLogs: [DayLog]
+    ) async -> [DayLog]? {
+        guard let session else {
+            statusMessage = "Sign in with Apple to enable cloud sync"
+            return nil
         }
-        // Placeholder for Supabase upsert; keeps offline-friendly local outbox.
-        statusMessage = "Sync endpoint ready — \(outbox.count) change(s) queued"
-        lastSyncedAt = Date()
-        outbox.removeAll()
-        pendingCount = 0
-        persistOutbox()
+        guard SupabaseConfig.isConfigured else {
+            statusMessage = "Supabase is not configured"
+            return nil
+        }
+
+        isSyncing = true
+        defer { isSyncing = false }
+
+        do {
+            try await SupabaseClient.shared.upsertProfile(session: session, profile: profile)
+            let pushLogs = outbox.isEmpty ? allLogs : outbox
+            try await SupabaseClient.shared.upsertDayLogs(session: session, logs: pushLogs)
+            try await SupabaseClient.shared.upsertShareSnapshot(
+                session: session,
+                prediction: prediction,
+                periodStart: profile.lastPeriodStart
+            )
+            let remote = try await SupabaseClient.shared.fetchDayLogs(session: session)
+            outbox.removeAll()
+            pendingCount = 0
+            persistOutbox()
+            lastSyncedAt = Date()
+            statusMessage = "Synced \(remote.count) day(s)"
+            return remote
+        } catch {
+            statusMessage = error.localizedDescription
+            return nil
+        }
     }
 
     private func loadOutbox() {

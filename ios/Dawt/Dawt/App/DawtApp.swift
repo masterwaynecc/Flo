@@ -9,6 +9,9 @@ struct DawtApp: App {
             RootView()
                 .environmentObject(appState)
                 .preferredColorScheme(.light)
+                .task {
+                    await appState.bootstrap()
+                }
         }
     }
 }
