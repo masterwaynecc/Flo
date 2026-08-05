@@ -61,9 +61,9 @@ struct CyclePredictionEngine: Sendable {
         let cyclesLogged = max(periodStarts.count, profile.lastPeriodStart == nil ? 0 : 1)
         let confidence: String = {
             if cyclesLogged >= 2 {
-                return "Based on your last \(min(cyclesLogged, 6)) cycles (avg \(cycleLength) days)."
+                return "Based on your last \(min(cyclesLogged, 6)) cycles (avg \(cycleLength) days), period ~\(periodLength) days."
             }
-            return "Using your typical \(cycleLength)-day cycle until more history is logged. Not contraception."
+            return "Using your typical \(cycleLength)-day cycle and \(periodLength)-day period until more history is logged. Not contraception."
         }()
 
         return CyclePrediction(
@@ -177,21 +177,37 @@ struct CyclePredictionEngine: Sendable {
 
     private func averagePeriodLength(logs: [DayLog], fallback: Int) -> Int {
         let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
         let starts = detectPeriodStarts(from: logs)
         guard !starts.isEmpty else { return max(fallback, 2) }
+
         var lengths: [Int] = []
         for start in starts.suffix(6) {
             var length = 0
+            var sawGap = false
             for offset in 0..<10 {
                 guard let day = cal.date(byAdding: .day, value: offset, to: start) else { break }
                 if logs.contains(where: { cal.isDate($0.date, inSameDayAs: day) && $0.flow.isPeriod }) {
                     length += 1
                 } else if offset > 0 {
+                    sawGap = true
+                    break
+                } else {
                     break
                 }
             }
-            if length > 0 { lengths.append(length) }
+            guard length > 0 else { continue }
+
+            // Still-bleeding / just-started periods only have 1…n logged days so far.
+            // Don't let that shrink predictions below the user's typical period length.
+            let isOpenCurrentPeriod = start == starts.last && (!sawGap || {
+                guard let lastBleed = cal.date(byAdding: .day, value: length - 1, to: start) else { return true }
+                return lastBleed >= today
+            }())
+            if isOpenCurrentPeriod { continue }
+            lengths.append(length)
         }
+
         guard !lengths.isEmpty else { return max(fallback, 2) }
         return max(Int((Double(lengths.reduce(0, +)) / Double(lengths.count)).rounded()), 2)
     }

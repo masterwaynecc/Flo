@@ -24,6 +24,28 @@ final class CyclePredictionEngineTests: XCTestCase {
         XCTAssertNotNil(prediction.nextPeriodStart)
     }
 
+    func testUsesTypicalPeriodLengthWhileCurrentPeriodIsOpen() {
+        var profile = UserProfile()
+        profile.typicalCycleLength = 28
+        profile.typicalPeriodLength = 5
+        let today = cal.startOfDay(for: Date())
+        profile.lastPeriodStart = today
+        let logs = [DayLog(date: today, flow: .medium)]
+
+        let prediction = engine.predict(profile: profile, logs: logs, asOf: today)
+        XCTAssertEqual(prediction.periodLength, 5)
+
+        XCTAssertEqual(engine.dayMarker(for: today, profile: profile, logs: logs), .loggedPeriod)
+        for offset in 1..<5 {
+            let day = cal.date(byAdding: .day, value: offset, to: today)!
+            XCTAssertEqual(
+                engine.dayMarker(for: day, profile: profile, logs: logs),
+                .predictedPeriod,
+                "Day +\(offset) should be predicted from typical period length"
+            )
+        }
+    }
+
     func testCatalogHasAtLeastSeventyItems() {
         XCTAssertGreaterThanOrEqual(SymptomCatalog.allCount, 70)
     }
