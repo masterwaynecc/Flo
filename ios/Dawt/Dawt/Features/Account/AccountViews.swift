@@ -144,12 +144,24 @@ struct PartnerSharingView: View {
                     } else {
                         ForEach(appState.partnerService.sharedWithMe) { link in
                             if let snap = appState.partnerService.snapshot(forOwner: link.ownerUserId) {
-                                PartnerSnapshotCard(snapshot: snap)
+                                NavigationLink {
+                                    PartnerCalendarView(snapshot: snap)
+                                } label: {
+                                    PartnerSnapshotCard(snapshot: snap)
+                                }
                             } else {
                                 Text("Waiting for \(shortId(link.ownerUserId)) to sync a snapshot…")
                                     .foregroundStyle(DawtColor.inkMuted)
                             }
                         }
+                    }
+                }
+
+                Section {
+                    NavigationLink {
+                        PartnerHowItWorksView(possessive: "Their")
+                    } label: {
+                        Label("How does partner calendar work?", systemImage: "questionmark.circle")
                     }
                 }
             }

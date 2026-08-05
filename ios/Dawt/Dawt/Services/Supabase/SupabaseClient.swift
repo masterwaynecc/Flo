@@ -236,17 +236,32 @@ actor SupabaseClient {
         }
     }
 
-    func upsertShareSnapshot(session: SupabaseSession, prediction: CyclePrediction, periodStart: Date?) async throws {
+    func upsertShareSnapshot(
+        session: SupabaseSession,
+        prediction: CyclePrediction,
+        profile: UserProfile,
+        logs: [DayLog]
+    ) async throws {
         let valid = try await refreshSession(session)
+        let cal = Calendar.current
+        let cutoff = cal.date(byAdding: .day, value: -120, to: Date()) ?? Date.distantPast
+        let loggedPeriodDates = logs
+            .filter { $0.flow.isPeriod && $0.date >= cutoff }
+            .map { dayString($0.date) }
+            .sorted()
+
         var row: [String: Any] = [
             "user_id": valid.userId,
             "cycle_day": prediction.cycleDay,
             "phase": prediction.phase.rawValue,
+            "period_length": prediction.periodLength,
+            "display_handle": profile.displayName.isEmpty ? NSNull() : profile.displayName,
+            "logged_period_dates": loggedPeriodDates,
             "updated_at": iso.string(from: Date())
         ]
-        if let periodStart {
+        if let periodStart = profile.lastPeriodStart {
             row["period_start"] = dayString(periodStart)
-            if let end = Calendar.current.date(byAdding: .day, value: max(prediction.periodLength - 1, 0), to: periodStart) {
+            if let end = cal.date(byAdding: .day, value: max(prediction.periodLength - 1, 0), to: periodStart) {
                 row["period_end"] = dayString(end)
             }
         }
@@ -450,6 +465,9 @@ struct CycleShareSnapshotDTO: Codable, Identifiable, Equatable {
     let nextPeriodStart: String?
     let cycleDay: Int?
     let phase: String?
+    let periodLength: Int?
+    let displayHandle: String?
+    let loggedPeriodDates: [String]?
     let updatedAt: Date?
 
     enum CodingKeys: String, CodingKey {
@@ -462,7 +480,15 @@ struct CycleShareSnapshotDTO: Codable, Identifiable, Equatable {
         case nextPeriodStart = "next_period_start"
         case cycleDay = "cycle_day"
         case phase
+        case periodLength = "period_length"
+        case displayHandle = "display_handle"
+        case loggedPeriodDates = "logged_period_dates"
         case updatedAt = "updated_at"
+    }
+
+    var ownerLabel: String {
+        if let handle = displayHandle, !handle.isEmpty { return handle }
+        return "Their"
     }
 }
 

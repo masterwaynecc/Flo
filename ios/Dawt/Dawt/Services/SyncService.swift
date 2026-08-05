@@ -58,7 +58,8 @@ final class SyncService: ObservableObject {
             try await SupabaseClient.shared.upsertShareSnapshot(
                 session: session,
                 prediction: prediction,
-                periodStart: profile.lastPeriodStart
+                profile: profile,
+                logs: allLogs
             )
             let remote = try await SupabaseClient.shared.fetchDayLogs(session: session)
             outbox.removeAll()
