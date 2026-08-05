@@ -16,7 +16,8 @@ enum DawtLinks {
             "Invite code: \(code)",
         ]
         if let url = testFlightJoinURL {
-            lines.append("Install the beta: \(url.absoluteString)")
+            lines.append("Install via TestFlight: \(url.absoluteString)")
+            lines.append("Then open Dawt → Profile → Partners and enter the invite code.")
         } else {
             lines.append("Install Dawt from TestFlight, then enter the invite code in Profile → Partners.")
         }

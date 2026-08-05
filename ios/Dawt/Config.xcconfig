@@ -2,6 +2,7 @@
 // Empty defaults keep clean clones building; cloud features stay off until Secrets is present.
 DAWT_SUPABASE_URL =
 DAWT_SUPABASE_ANON_KEY =
-// Public TestFlight join link (not secret). Use https:/$()/… so // is not a comment.
-DAWT_TESTFLIGHT_URL =
+// TestFlight app link (not secret). Use https:/$()/… so // is not a comment.
+// Prefer a Public Link (…/join/XXXX) when External Testing is enabled; /v1/app/ID works for invited testers.
+DAWT_TESTFLIGHT_URL = https:/$()/testflight.apple.com/v1/app/6798087071
 #include? "Secrets.xcconfig"
