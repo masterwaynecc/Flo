@@ -42,6 +42,8 @@
 	<string>$(DAWT_SUPABASE_URL)</string>
 	<key>DAWTSupabaseAnonKey</key>
 	<string>$(DAWT_SUPABASE_ANON_KEY)</string>
+	<key>DAWTTestFlightURL</key>
+	<string>$(DAWT_TESTFLIGHT_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Yellowtail-Regular.ttf</string>

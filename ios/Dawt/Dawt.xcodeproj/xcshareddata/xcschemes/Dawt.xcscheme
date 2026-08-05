@@ -3,25 +3,25 @@
    <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES">
       <BuildActionEntries>
          <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
-            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="1C6BCC16ABCF4CBEA7982736" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="86EF1C0B5A2743448190D2B9" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv="YES">
       <Testables>
          <TestableReference skipped="NO">
-            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A78C9A5062FD4B33A3DC705F" BuildableName="DawtTests.xctest" BlueprintName="DawtTests" ReferencedContainer="container:Dawt.xcodeproj"/>
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="DBAC028B68824E09A98DE705" BuildableName="DawtTests.xctest" BlueprintName="DawtTests" ReferencedContainer="container:Dawt.xcodeproj"/>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" launchStyle="0" useCustomWorkingDirectory="NO" ignoresPersistentStateOnLaunch="NO" debugDocumentVersioning="YES" debugServiceExtension="internal" allowLocationSimulation="YES">
       <BuildableProductRunnable runnableDebuggingMode="0">
-         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="1C6BCC16ABCF4CBEA7982736" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="86EF1C0B5A2743448190D2B9" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" savedToolIdentifier="" useCustomWorkingDirectory="NO" debugDocumentVersioning="YES">
       <BuildableProductRunnable runnableDebuggingMode="0">
-         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="1C6BCC16ABCF4CBEA7982736" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="86EF1C0B5A2743448190D2B9" BuildableName="Dawt.app" BlueprintName="Dawt" ReferencedContainer="container:Dawt.xcodeproj"/>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction buildConfiguration="Debug"/>

@@ -2,4 +2,6 @@
 // Empty defaults keep clean clones building; cloud features stay off until Secrets is present.
 DAWT_SUPABASE_URL =
 DAWT_SUPABASE_ANON_KEY =
+// Public TestFlight join link (not secret). Use https:/$()/… so // is not a comment.
+DAWT_TESTFLIGHT_URL =
 #include? "Secrets.xcconfig"

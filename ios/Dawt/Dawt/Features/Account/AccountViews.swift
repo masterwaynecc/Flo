@@ -92,8 +92,8 @@ struct PartnerSharingView: View {
 
                     if let code = appState.partnerService.latestInviteCode {
                         LabeledContent("Code", value: code)
-                        ShareLink(item: "Join me on dawt with invite code \(code)") {
-                            Label("Share code", systemImage: "square.and.arrow.up")
+                        ShareLink(item: DawtLinks.partnerInviteMessage(code: code)) {
+                            Label("Share invite", systemImage: "square.and.arrow.up")
                         }
                     }
                 }
