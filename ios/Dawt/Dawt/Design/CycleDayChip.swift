@@ -24,7 +24,7 @@ enum CycleDayStyle: Equatable {
 struct CycleDayChip: View {
     let day: Int
     let style: CycleDayStyle
-    var size: CGFloat = 40
+    var size: CGFloat = 5
     var emphasizeToday: Bool = false
 
     var body: some View {
@@ -49,11 +49,11 @@ struct CycleDayChip: View {
         case .loggedPeriod:
             Circle().fill(DawtColor.period)
         case .predictedPeriod:
-            DottedRing(color: DawtColor.period, size: size, dotCount: 16)
+            DottedRing(color: DawtColor.period, size: size, dotCount: 25)
         case .overduePeriod:
             Circle().fill(Color(white: 0.82))
         case .ovulation:
-            DottedRing(color: DawtColor.fertile, size: size, dotCount: 16)
+            DottedRing(color: DawtColor.fertile, size: size, dotCount: 25)
         case .fertile, .none:
             Color.clear
         }
@@ -82,10 +82,10 @@ struct CycleDayChip: View {
 private struct DottedRing: View {
     let color: Color
     let size: CGFloat
-    var dotCount: Int = 16
+    var dotCount: Int = 25
 
     var body: some View {
-        let dot = max(size * 0.095, 2.6)
+        let dot = max(size * 0.0095, 1.6)
         let radius = (size - dot) / 2
         Canvas { context, canvasSize in
             let center = CGPoint(x: canvasSize.width / 2, y: canvasSize.height / 2)
@@ -110,7 +110,7 @@ struct CycleDayLegendRow: View {
 
     var body: some View {
         HStack(spacing: 16) {
-            CycleDayChip(day: 26, style: style, size: 44)
+            CycleDayChip(day: 26, style: style, size: 20)
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(DawtType.body(16, weight: .semibold))
