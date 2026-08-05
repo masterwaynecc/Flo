@@ -174,13 +174,23 @@ final class AppState: ObservableObject {
     private func mergeLogs(local: [DayLog], remote: [DayLog]) -> [DayLog] {
         var map: [String: DayLog] = [:]
         let key: (DayLog) -> String = {
-            ISO8601DateFormatter().string(from: Calendar.current.startOfDay(for: $0.date))
+            let f = DateFormatter()
+            f.calendar = Calendar.current
+            f.locale = Locale(identifier: "en_US_POSIX")
+            f.timeZone = Calendar.current.timeZone
+            f.dateFormat = "yyyy-MM-dd"
+            return f.string(from: Calendar.current.startOfDay(for: $0.date))
         }
-        for log in local { map[key(log)] = log }
-        for log in remote {
+        for log in remote { map[key(log)] = log }
+        for log in local {
             let k = key(log)
             if let existing = map[k] {
-                map[k] = existing.updatedAt >= log.updatedAt ? existing : log
+                // Keep newer content, but prefer the remote primary key after a sync.
+                if log.updatedAt > existing.updatedAt {
+                    var merged = log
+                    merged.id = existing.id
+                    map[k] = merged
+                }
             } else {
                 map[k] = log
             }

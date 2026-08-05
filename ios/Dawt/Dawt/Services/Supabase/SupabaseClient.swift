@@ -72,7 +72,27 @@ actor SupabaseClient {
     }
 
     func dayString(_ date: Date) -> String {
-        dayFormatter.string(from: Calendar.current.startOfDay(for: date))
+        Self.formatDay(date)
+    }
+
+    private static func formatDay(_ date: Date) -> String {
+        // Format in the user's calendar day, not UTC, so timezones don't shift dates.
+        let local = DateFormatter()
+        local.calendar = Calendar.current
+        local.locale = Locale(identifier: "en_US_POSIX")
+        local.timeZone = Calendar.current.timeZone
+        local.dateFormat = "yyyy-MM-dd"
+        return local.string(from: Calendar.current.startOfDay(for: date))
+    }
+
+    private static func parseDay(_ string: String) -> Date? {
+        let parts = string.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3 else { return nil }
+        var comps = DateComponents()
+        comps.year = parts[0]
+        comps.month = parts[1]
+        comps.day = parts[2]
+        return Calendar.current.date(from: comps).map { Calendar.current.startOfDay(for: $0) }
     }
 
     // MARK: - Auth
@@ -144,6 +164,8 @@ actor SupabaseClient {
     func upsertDayLogs(session: SupabaseSession, logs: [DayLog]) async throws {
         guard !logs.isEmpty else { return }
         let valid = try await refreshSession(session)
+        // Omit primary key `id` — conflict target is (user_id, log_date).
+        // Sending a local UUID here 409s when that date already exists with a different id.
         let rows: [[String: Any]] = logs.map { log in
             let payload: [String: Any] = [
                 "symptomIDs": log.symptomIDs,
@@ -151,7 +173,6 @@ actor SupabaseClient {
                 "notes": log.notes
             ]
             return [
-                "id": log.id.uuidString.lowercased(),
                 "user_id": valid.userId,
                 "log_date": dayString(log.date),
                 "flow": log.flow.rawValue,
@@ -185,7 +206,7 @@ actor SupabaseClient {
                 let idString = row["id"] as? String,
                 let id = UUID(uuidString: idString),
                 let dateString = row["log_date"] as? String,
-                let date = dayFormatter.date(from: dateString),
+                let date = Self.parseDay(dateString),
                 let flowRaw = row["flow"] as? String,
                 let flow = FlowLevel(rawValue: flowRaw),
                 let clientString = row["client_id"] as? String,
