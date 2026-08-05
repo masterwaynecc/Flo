@@ -49,27 +49,14 @@ struct CycleDayChip: View {
         case .loggedPeriod:
             Circle().fill(DawtColor.period)
         case .predictedPeriod:
-            Circle().strokeBorder(DawtColor.period, style: dottedStroke)
+            DottedRing(color: DawtColor.period, size: size, dotCount: 16)
         case .overduePeriod:
             Circle().fill(Color(white: 0.82))
         case .ovulation:
-            Circle().strokeBorder(DawtColor.fertile, style: dottedStroke)
+            DottedRing(color: DawtColor.fertile, size: size, dotCount: 16)
         case .fertile, .none:
             Color.clear
         }
-    }
-
-    /// Near-zero dash + round caps → circular beads instead of rectangular dashes.
-    private var dottedStroke: StrokeStyle {
-        let lineWidth = max(size * 0.07, 2.2)
-        // Smaller gap = more beads around the ring.
-        let gap = max(size * 0.13, 3.2)
-        return StrokeStyle(
-            lineWidth: lineWidth,
-            lineCap: .round,
-            lineJoin: .round,
-            dash: [0.001, gap]
-        )
     }
 
     private var numberColor: Color {
@@ -88,6 +75,29 @@ struct CycleDayChip: View {
         case .predictedPeriod, .ovulation, .fertile: return .semibold
         case .none: return emphasizeToday ? .bold : .regular
         }
+    }
+}
+
+/// Evenly spaced circular beads — avoids dash-pattern overlap where a stroked path closes.
+private struct DottedRing: View {
+    let color: Color
+    let size: CGFloat
+    var dotCount: Int = 16
+
+    var body: some View {
+        let dot = max(size * 0.095, 2.6)
+        let radius = (size - dot) / 2
+        Canvas { context, canvasSize in
+            let center = CGPoint(x: canvasSize.width / 2, y: canvasSize.height / 2)
+            for i in 0..<dotCount {
+                let angle = (Double(i) / Double(dotCount)) * 2 * Double.pi - Double.pi / 2
+                let x = center.x + CGFloat(cos(angle)) * radius
+                let y = center.y + CGFloat(sin(angle)) * radius
+                let rect = CGRect(x: x - dot / 2, y: y - dot / 2, width: dot, height: dot)
+                context.fill(Path(ellipseIn: rect), with: .color(color))
+            }
+        }
+        .frame(width: size, height: size)
     }
 }
 
