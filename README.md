@@ -58,6 +58,7 @@ python3 scripts/ai_eval.py
 ```bash
 cp ios/Dawt/Secrets.xcconfig.example ios/Dawt/Secrets.xcconfig
 # fill DAWT_SUPABASE_URL + DAWT_SUPABASE_ANON_KEY from Supabase → Project Settings → API
+# URL must use https:/$()/YOUR_REF.supabase.co  (plain https:// is truncated by xcconfig comments)
 ```
 
 4. Run an open-weight server locally, e.g. `ollama pull llama3.2 && ollama serve`.

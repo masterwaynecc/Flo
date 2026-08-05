@@ -17,7 +17,11 @@ enum SupabaseConfig {
     }
 
     static var isConfigured: Bool {
-        !urlString.isEmpty && !anonKey.isEmpty && URL(string: urlString) != nil
+        guard !urlString.isEmpty, !anonKey.isEmpty, let url = URL(string: urlString) else {
+            return false
+        }
+        // Catch truncated xcconfig values like "https:" when // was treated as a comment.
+        return url.scheme == "https" && !(url.host ?? "").isEmpty
     }
 
     static func persist(url: String, anonKey: String) {
