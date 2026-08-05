@@ -61,8 +61,9 @@ struct CycleDayChip: View {
 
     /// Near-zero dash + round caps → circular beads instead of rectangular dashes.
     private var dottedStroke: StrokeStyle {
-        let lineWidth = max(size * 0.08, 2.4)
-        let gap = max(size * 0.22, 5.5)
+        let lineWidth = max(size * 0.07, 2.2)
+        // Smaller gap = more beads around the ring.
+        let gap = max(size * 0.13, 3.2)
         return StrokeStyle(
             lineWidth: lineWidth,
             lineCap: .round,
