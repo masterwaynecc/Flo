@@ -49,22 +49,26 @@ struct CycleDayChip: View {
         case .loggedPeriod:
             Circle().fill(DawtColor.period)
         case .predictedPeriod:
-            Circle()
-                .strokeBorder(
-                    DawtColor.period,
-                    style: StrokeStyle(lineWidth: max(size * 0.055, 2), dash: [size * 0.09, size * 0.075])
-                )
+            Circle().strokeBorder(DawtColor.period, style: dottedStroke)
         case .overduePeriod:
             Circle().fill(Color(white: 0.82))
         case .ovulation:
-            Circle()
-                .strokeBorder(
-                    DawtColor.fertile,
-                    style: StrokeStyle(lineWidth: max(size * 0.055, 2), dash: [size * 0.09, size * 0.075])
-                )
+            Circle().strokeBorder(DawtColor.fertile, style: dottedStroke)
         case .fertile, .none:
             Color.clear
         }
+    }
+
+    /// Near-zero dash + round caps → circular beads instead of rectangular dashes.
+    private var dottedStroke: StrokeStyle {
+        let lineWidth = max(size * 0.08, 2.4)
+        let gap = max(size * 0.22, 5.5)
+        return StrokeStyle(
+            lineWidth: lineWidth,
+            lineCap: .round,
+            lineJoin: .round,
+            dash: [0.001, gap]
+        )
     }
 
     private var numberColor: Color {
