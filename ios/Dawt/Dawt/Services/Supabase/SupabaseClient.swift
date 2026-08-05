@@ -391,6 +391,11 @@ actor SupabaseClient {
         let code = (response as? HTTPURLResponse)?.statusCode ?? 0
         guard (200..<300).contains(code) else {
             let text = String(data: data, encoding: .utf8) ?? ""
+            if text.contains("provider_disabled") {
+                throw SupabaseError.message(
+                    "Apple Sign In isn’t enabled in Supabase yet. Enable the Apple provider and add Client ID app.dawt.cycle."
+                )
+            }
             throw SupabaseError.http(code, text)
         }
         return data
