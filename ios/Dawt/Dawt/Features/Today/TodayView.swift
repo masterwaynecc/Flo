@@ -14,6 +14,7 @@ struct TodayView: View {
                     VStack(spacing: 20) {
                         DawtBrandTitle(size: 40, color: DawtColor.ink)
                             .padding(.top, 4)
+                            .zIndex(1)
 
                         CycleRingView(prediction: prediction)
 
