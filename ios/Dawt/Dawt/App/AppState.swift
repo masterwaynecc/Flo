@@ -11,7 +11,6 @@ final class AppState: ObservableObject {
     @Published var selectedTab: AppTab = .today
     @Published var showingDayLog: Bool = false
     @Published var dayLogDate: Date = Date()
-    @Published var showingAssistant: Bool = false
 
     let store: LocalStore
     let predictionEngine: CyclePredictionEngine

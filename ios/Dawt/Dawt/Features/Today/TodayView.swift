@@ -39,16 +39,6 @@ struct TodayView: View {
                 }
             }
             .navigationTitle("dawt")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        appState.showingAssistant = true
-                    } label: {
-                        Image(systemName: "bubble.left.and.text.bubble.right.fill")
-                    }
-                    .accessibilityLabel("Open Health Assistant")
-                }
-            }
         }
     }
 
@@ -82,26 +72,13 @@ struct TodayView: View {
     }
 
     private var actionRow: some View {
-        HStack(spacing: 12) {
-            Button {
-                appState.openDayLog()
-            } label: {
-                Label("Log today", systemImage: "plus.circle.fill")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(DawtPrimaryButtonStyle())
-
-            Button {
-                appState.showingAssistant = true
-            } label: {
-                Label("Ask AI", systemImage: "text.bubble")
-                    .font(DawtType.body(16, weight: .semibold))
-                    .foregroundStyle(DawtColor.roseDeep)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-                    .background(Color.white.opacity(0.7), in: Capsule())
-            }
+        Button {
+            appState.openDayLog()
+        } label: {
+            Label("Log today", systemImage: "plus.circle.fill")
+                .frame(maxWidth: .infinity)
         }
+        .buttonStyle(DawtPrimaryButtonStyle())
     }
 
     private var disclaimer: some View {

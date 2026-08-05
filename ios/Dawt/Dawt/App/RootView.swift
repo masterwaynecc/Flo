@@ -16,10 +16,6 @@ struct RootView: View {
             DayLogView(date: appState.dayLogDate)
                 .environmentObject(appState)
         }
-        .sheet(isPresented: $appState.showingAssistant) {
-            AssistantView()
-                .environmentObject(appState)
-        }
     }
 }
 
