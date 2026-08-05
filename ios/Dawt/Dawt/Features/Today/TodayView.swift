@@ -38,7 +38,12 @@ struct TodayView: View {
                     .padding(20)
                 }
             }
-            .navigationTitle("dawt")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    DawtBrandTitle(size: 36, color: DawtColor.ink)
+                }
+            }
         }
     }
 

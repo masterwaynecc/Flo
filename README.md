@@ -67,6 +67,8 @@ cp ios/Dawt/Secrets.xcconfig.example ios/Dawt/Secrets.xcconfig
 
 Closed-source hosted model APIs are intentionally unsupported. Do not commit service-role keys, Apple `.p8` keys, or `Secrets.xcconfig`.
 
+Brand wordmark uses [Yellowtail](https://fonts.google.com/specimen/Yellowtail) (SIL Open Font License) from Google Fonts.
+
 ## Trademark notice
 
 Not affiliated with Flo Health UK Limited. Do not ship Flo brand assets or trademarks. Product name: **dawt**.

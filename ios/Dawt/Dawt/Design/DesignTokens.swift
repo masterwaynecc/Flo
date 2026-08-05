@@ -14,12 +14,29 @@ enum DawtColor {
 }
 
 enum DawtType {
+    /// Yellowtail (Google Fonts, OFL) — brand wordmark only.
+    static func brand(_ size: CGFloat) -> Font {
+        .custom("Yellowtail-Regular", size: size)
+    }
+
     static func display(_ size: CGFloat, weight: Font.Weight = .bold) -> Font {
         .system(size: size, weight: weight, design: .rounded)
     }
 
     static func body(_ size: CGFloat = 16, weight: Font.Weight = .regular) -> Font {
         .system(size: size, weight: weight, design: .rounded)
+    }
+}
+
+struct DawtBrandTitle: View {
+    var size: CGFloat = 34
+    var color: Color = DawtColor.ink
+
+    var body: some View {
+        Text("dawt")
+            .font(DawtType.brand(size))
+            .foregroundStyle(color)
+            .accessibilityAddTraits(.isHeader)
     }
 }
 

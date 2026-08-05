@@ -59,9 +59,7 @@ struct OnboardingFlowView: View {
 
     private var welcome: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("dawt")
-                .font(DawtType.display(48))
-                .foregroundStyle(DawtColor.roseDeep)
+            DawtBrandTitle(size: 64, color: DawtColor.roseDeep)
             Text("Cycle clarity, privately yours.")
                 .font(DawtType.display(28, weight: .semibold))
                 .foregroundStyle(DawtColor.ink)

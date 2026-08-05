@@ -12,6 +12,7 @@ IOS = ROOT / "ios" / "Dawt"
 PROJECT_DIR = IOS / "Dawt.xcodeproj"
 SOURCES = sorted((IOS / "Dawt").rglob("*.swift"))
 TESTS = sorted((ROOT / "Tests" / "DawtTests").rglob("*.swift"))
+FONTS = sorted((IOS / "Dawt").rglob("*.ttf")) + sorted((IOS / "Dawt").rglob("*.otf"))
 
 
 def nid() -> str:
@@ -26,7 +27,7 @@ def main() -> None:
         "test_sources", "test_frameworks",
         "proj_configs", "app_configs", "test_configs",
         "dbg_proj", "rel_proj", "dbg_app", "rel_app", "dbg_test", "rel_test",
-        "assets", "assets_build", "info", "entitlements", "xcconfig",
+        "assets", "assets_build", "info", "entitlements", "xcconfig", "fonts_group",
         "container", "target_dep",
     ]}
 
@@ -35,6 +36,8 @@ def main() -> None:
     build_test = []
     src_children = []
     test_children = []
+    font_children = []
+    resource_build_lines = []
 
     for path in SOURCES:
         fid, bid = nid(), nid()
@@ -65,6 +68,18 @@ def main() -> None:
     build_app.append(
         f'\t\t{ids["assets_build"]} /* Assets.xcassets in Resources */ = {{isa = PBXBuildFile; fileRef = {ids["assets"]} /* Assets.xcassets */; }};'
     )
+    resource_build_lines.append(f'\t\t\t\t{ids["assets_build"]} /* Assets.xcassets in Resources */,')
+
+    for path in FONTS:
+        fid, bid = nid(), nid()
+        rel = path.relative_to(IOS).as_posix()
+        ftype = "file" if path.suffix.lower() == ".ttf" else "file"
+        file_refs.append(
+            f'\t\t{fid} /* {path.name} */ = {{isa = PBXFileReference; lastKnownFileType = {ftype}; name = "{path.name}"; path = "{rel}"; sourceTree = "<group>"; }};'
+        )
+        build_app.append(f'\t\t{bid} /* {path.name} in Resources */ = {{isa = PBXBuildFile; fileRef = {fid} /* {path.name} */; }};')
+        font_children.append(f"\t\t\t\t{fid} /* {path.name} */,")
+        resource_build_lines.append(f"\t\t\t\t{bid} /* {path.name} in Resources */,")
 
     app_source_lines = "\n".join(
         f"\t\t\t\t{line.split()[0]} /* in Sources */," for line in build_app if "in Sources" in line
@@ -72,6 +87,7 @@ def main() -> None:
     test_source_lines = "\n".join(
         f"\t\t\t\t{line.split()[0]} /* in Sources */," for line in build_test if "in Sources" in line
     )
+    resource_lines = "\n".join(resource_build_lines)
 
     content = f"""// !$*UTF8*$!
 {{
@@ -102,12 +118,21 @@ def main() -> None:
 \t\t\tchildren = (
 \t\t\t\t{ids["src_group"]} /* Sources */,
 \t\t\t\t{ids["test_group"]} /* Tests */,
+\t\t\t\t{ids["fonts_group"]} /* Fonts */,
 \t\t\t\t{ids["assets"]} /* Assets.xcassets */,
 \t\t\t\t{ids["info"]} /* Info.plist */,
 \t\t\t\t{ids["entitlements"]} /* Dawt.entitlements */,
 \t\t\t\t{ids["xcconfig"]} /* Config.xcconfig */,
 \t\t\t\t{ids["products"]} /* Products */,
 \t\t\t);
+\t\t\tsourceTree = "<group>";
+\t\t}};
+\t\t{ids["fonts_group"]} /* Fonts */ = {{
+\t\t\tisa = PBXGroup;
+\t\t\tchildren = (
+{chr(10).join(font_children)}
+\t\t\t);
+\t\t\tname = Fonts;
 \t\t\tsourceTree = "<group>";
 \t\t}};
 \t\t{ids["products"]} /* Products */ = {{
@@ -204,7 +229,7 @@ def main() -> None:
 \t\t\tisa = PBXResourcesBuildPhase;
 \t\t\tbuildActionMask = 2147483647;
 \t\t\tfiles = (
-\t\t\t\t{ids["assets_build"]} /* Assets.xcassets in Resources */,
+{resource_lines}
 \t\t\t);
 \t\t\trunOnlyForDeploymentPostprocessing = 0;
 \t\t}};
@@ -370,7 +395,7 @@ def main() -> None:
 
     PROJECT_DIR.mkdir(parents=True, exist_ok=True)
     (PROJECT_DIR / "project.pbxproj").write_text(content)
-    print(f"Generated project with {len(SOURCES)} sources, {len(TESTS)} tests")
+    print(f"Generated project with {len(SOURCES)} sources, {len(TESTS)} tests, {len(FONTS)} fonts")
 
 
 if __name__ == "__main__":
