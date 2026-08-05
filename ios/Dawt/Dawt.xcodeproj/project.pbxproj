@@ -6,152 +6,154 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3954E47C0AE43CC9BD9B7AC /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D47455B904C6D9E9D518B /* AppState.swift */; };
-		DAF0D9130A7942FD9C4F5100 /* DawtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAEEB6B9DF4413919A2816 /* DawtApp.swift */; };
-		07EF92B4ABA94CB9A5727FEC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5462614F09F54623AC74F48C /* RootView.swift */; };
-		B1382B889FF442C19B5D558F /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCFCA8280C8494FB930869F /* DesignTokens.swift */; };
-		F70AD9C066984A44872E393B /* AccountViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEF5EEA85F54AC3AC9F5C99 /* AccountViews.swift */; };
-		08D68183B63E48F1AD717F22 /* AssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94B12A222564612A4E30FBC /* AssistantView.swift */; };
-		19F96EF33AA84735983E225D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B69DC688714246BF04A973 /* CalendarView.swift */; };
-		6CBE43D667D643BB8A087C79 /* DayLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FADD04C5014CC0846BA16D /* DayLogView.swift */; };
-		F6906EA6BEBF4BA6913301FE /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ADAA1F73384132B92D6A84 /* InsightsView.swift */; };
-		3A457287E21F42E2BB1D4602 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032A523A4364DB49D22000C /* OnboardingFlowView.swift */; };
-		50B421499D94446EBFA56DC6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBEDA47D604DCBB99B1EAD /* SettingsView.swift */; };
-		6AA913F8A0EF4F34979477E7 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DFE223D46442E4A0788BBE /* TodayView.swift */; };
-		5210470FA295472EA5E12B89 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2971B96BF7A4ED1B3529203 /* Models.swift */; };
-		8E0806A0680241478FB88CAD /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE91B628C1C4260AE73A7E7 /* AIProvider.swift */; };
-		FE0BC71E560F4620B394705C /* AppleOnDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428A3474424147138445ABC8 /* AppleOnDeviceProvider.swift */; };
-		DACEEE1D2D6E43A48E08DDC5 /* GatewayAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810351491068468A9EC94B17 /* GatewayAIProvider.swift */; };
-		2351AD338E844C3F98EB1C7D /* MockAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15A56D3151425CB6F290F0 /* MockAIProvider.swift */; };
-		6399D245E1E542978A523FDF /* OpenCompatibleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131D7DDD39854A26AC179350 /* OpenCompatibleProvider.swift */; };
-		5D577AD69BF44CE084A3A4FA /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D541F421AEE549B4ABF479B5 /* CyclePredictionEngine.swift */; };
-		7EFD4E1228684A55A6918A43 /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C3B99896F24BC6814A4AEF /* InsightEngine.swift */; };
-		7BF5F9C150E5470DA85EED12 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FFCC786B6E4CDBADDE532E /* LocalStore.swift */; };
-		10EDF98C5E75441A8C5267FC /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAF6118189942CD845BEAEF /* NotificationScheduler.swift */; };
-		2AA4F2186AA44C4292BEF965 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2A80F155A54E299D7BC57C /* AuthService.swift */; };
-		79CB6C2FFC644FD091917B03 /* PartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2A2C3E12140F680484BCD /* PartnerService.swift */; };
-		7744BA492DE74D42B09BBD1F /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1839F6B8574CFE919C6627 /* SupabaseClient.swift */; };
-		1726BF2F585247E2829E4BC2 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E516B427DE0149D1A22CE6BE /* SupabaseConfig.swift */; };
-		CD1E72AE20204877818489E6 /* SymptomCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD66ECB511487FB5973895 /* SymptomCatalog.swift */; };
-		3CA37A72AA8B4A49818ED803 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A81AA2A3F64AF6980AF349 /* SyncService.swift */; };
-		D27F5F66D66848CDA95E01B6 /* TrendsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDBCD7E37F248DA8299213E /* TrendsEngine.swift */; };
-		D9EE43EDAD06423EA37B1B75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D75AEF5779949A7BFD2192E /* Assets.xcassets */; };
-		900C0E9F54914FEB99ED513E /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F24311A1A840CFB0FFFDC4 /* CyclePredictionEngineTests.swift */; };
+		FD47F4A565BC405981C064D6 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC90B7D7C143F785CE85DA /* AppState.swift */; };
+		D09D246F6B0C423681BE213A /* DawtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDC2CC101C14122BC4A3CDB /* DawtApp.swift */; };
+		64E163DBC1D845FABCC9B721 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705C8C913EC47989B065F59 /* RootView.swift */; };
+		546CC9C8CBBB406589708502 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F09AF8DEB541E9A86AEC1E /* DesignTokens.swift */; };
+		744C2314C4B8498ABDE61C0D /* AccountViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C42FBE99014050B141AE81 /* AccountViews.swift */; };
+		EE7DA96954E64352ACB90932 /* AssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0806499315664DD4B45EA1D8 /* AssistantView.swift */; };
+		8A93119D1345463A958DC153 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5F0B8D1FE41D88EECA251 /* CalendarView.swift */; };
+		B13857E5EA7D4C6FA6CE1310 /* DayLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C78A5CC43B44DD99EA0F22 /* DayLogView.swift */; };
+		AB0B0A01340F4623A518174E /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A495840F6FF4450EA7651953 /* InsightsView.swift */; };
+		BBF84CF49C0E4952BB6D43BD /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007F5130CBD48D8894C064B /* OnboardingFlowView.swift */; };
+		2AD251683BFF4A0CAACF9E36 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA85BA221E5455FB850473F /* SettingsView.swift */; };
+		F98E26660F4940AB8BC36FE8 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5766DFD6AA0044B48F71411E /* TodayView.swift */; };
+		17C54583F8A443D0B408052A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6589159AC784D0589F0EB81 /* Models.swift */; };
+		D2F8AF1BF40F4BDDBD6EB91E /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03843E2A27F245A09198E0F5 /* AIProvider.swift */; };
+		2CBD723CEC0B4085851AA1F5 /* AppleOnDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E61B650774854BA24C6C6 /* AppleOnDeviceProvider.swift */; };
+		CCEE003801E940C09E94EB79 /* GatewayAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999D7896E6E54848AAFE96D0 /* GatewayAIProvider.swift */; };
+		332A81CB67354B5CA6F6FB03 /* MockAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92C8FEA0EDB4FE1BF725A4B /* MockAIProvider.swift */; };
+		F4E9AB3E5F0C42F68D9F6E78 /* OpenCompatibleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3642B5ABEA4196A74EAD83 /* OpenCompatibleProvider.swift */; };
+		8FC49D1F48794DDEB765FE76 /* CyclePredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5270C197213540A896B3F0B1 /* CyclePredictionEngine.swift */; };
+		BD325646014F44DE85EDF4A9 /* InsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CF7E18A2F4A5E83CB8E00 /* InsightEngine.swift */; };
+		0E93EFEB6DE343CE9E7CC31B /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1449F8181E5A4068BB9078D5 /* LocalStore.swift */; };
+		75B2CF71AF074762A42BC287 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695F838A3D2F4794A6AA3B47 /* NotificationScheduler.swift */; };
+		2FAC4FA2F2E840BBA75EC938 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6D4EC15B947B6A356A407 /* AuthService.swift */; };
+		36F7449EB9304B2F949FE215 /* PartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EF8BE8BA5F4CA397F30F85 /* PartnerService.swift */; };
+		6073A5BAF6EC488BAD235C0D /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26086E2730D84244A03D6A38 /* SupabaseClient.swift */; };
+		470B8F72C1994F60B3BFCAE1 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05868010C024A68A670A6F0 /* SupabaseConfig.swift */; };
+		49C19886CE1144E8B18F5F30 /* SymptomCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13D7352D998412D9568E768 /* SymptomCatalog.swift */; };
+		9985FE182ED94AABB700CC28 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4957D86C19430DB6CBEF36 /* SyncService.swift */; };
+		4066A31FB824463297881EEB /* TrendsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1849EE64180445DDBCEF2E65 /* TrendsEngine.swift */; };
+		4351226A9D4D45FA9EAFB6E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE464EDAC364D9FBEBCE900 /* Assets.xcassets */; };
+		6F8F826645ED439AA5FD9A15 /* CyclePredictionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B986EA6363644ACCA32602DE /* CyclePredictionEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F23D2A6EFF714D5D80600F0C /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = A5716A01303F426EAB28D4E2 /* Project object */; proxyType = 1; remoteGlobalIDString = EA2C75B372ED49DA808F8807; remoteInfo = Dawt; };
+		FE4625AD5019462A9DA00F44 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 64A392F797364EB196DFF25C /* Project object */; proxyType = 1; remoteGlobalIDString = B454FB5660A84E34B2E993BD; remoteInfo = Dawt; };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXTargetDependency section */
-		7F3AA82B422F49E1B5ABAB2D /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = EA2C75B372ED49DA808F8807 /* Dawt */; targetProxy = F23D2A6EFF714D5D80600F0C /* PBXContainerItemProxy */; };
+		4E81968D307E4E7E9F845916 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = B454FB5660A84E34B2E993BD /* Dawt */; targetProxy = FE4625AD5019462A9DA00F44 /* PBXContainerItemProxy */; };
 /* End PBXTargetDependency section */
 
 /* Begin PBXFileReference section */
-		041D47455B904C6D9E9D518B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppState.swift"; path = "Dawt/App/AppState.swift"; sourceTree = "<group>"; };
-		2DDAEEB6B9DF4413919A2816 /* DawtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DawtApp.swift"; path = "Dawt/App/DawtApp.swift"; sourceTree = "<group>"; };
-		5462614F09F54623AC74F48C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "Dawt/App/RootView.swift"; sourceTree = "<group>"; };
-		CDCFCA8280C8494FB930869F /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DesignTokens.swift"; path = "Dawt/Design/DesignTokens.swift"; sourceTree = "<group>"; };
-		FCEF5EEA85F54AC3AC9F5C99 /* AccountViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AccountViews.swift"; path = "Dawt/Features/Account/AccountViews.swift"; sourceTree = "<group>"; };
-		C94B12A222564612A4E30FBC /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AssistantView.swift"; path = "Dawt/Features/Assistant/AssistantView.swift"; sourceTree = "<group>"; };
-		D5B69DC688714246BF04A973 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CalendarView.swift"; path = "Dawt/Features/Calendar/CalendarView.swift"; sourceTree = "<group>"; };
-		F3FADD04C5014CC0846BA16D /* DayLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DayLogView.swift"; path = "Dawt/Features/DayLog/DayLogView.swift"; sourceTree = "<group>"; };
-		A4ADAA1F73384132B92D6A84 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightsView.swift"; path = "Dawt/Features/Insights/InsightsView.swift"; sourceTree = "<group>"; };
-		3032A523A4364DB49D22000C /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingFlowView.swift"; path = "Dawt/Features/Onboarding/OnboardingFlowView.swift"; sourceTree = "<group>"; };
-		37DBEDA47D604DCBB99B1EAD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Dawt/Features/Settings/SettingsView.swift"; sourceTree = "<group>"; };
-		64DFE223D46442E4A0788BBE /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodayView.swift"; path = "Dawt/Features/Today/TodayView.swift"; sourceTree = "<group>"; };
-		E2971B96BF7A4ED1B3529203 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Models.swift"; path = "Dawt/Models/Models.swift"; sourceTree = "<group>"; };
-		CEE91B628C1C4260AE73A7E7 /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AIProvider.swift"; path = "Dawt/Services/AI/AIProvider.swift"; sourceTree = "<group>"; };
-		428A3474424147138445ABC8 /* AppleOnDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppleOnDeviceProvider.swift"; path = "Dawt/Services/AI/AppleOnDeviceProvider.swift"; sourceTree = "<group>"; };
-		810351491068468A9EC94B17 /* GatewayAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GatewayAIProvider.swift"; path = "Dawt/Services/AI/GatewayAIProvider.swift"; sourceTree = "<group>"; };
-		3B15A56D3151425CB6F290F0 /* MockAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MockAIProvider.swift"; path = "Dawt/Services/AI/MockAIProvider.swift"; sourceTree = "<group>"; };
-		131D7DDD39854A26AC179350 /* OpenCompatibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OpenCompatibleProvider.swift"; path = "Dawt/Services/AI/OpenCompatibleProvider.swift"; sourceTree = "<group>"; };
-		D541F421AEE549B4ABF479B5 /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngine.swift"; path = "Dawt/Services/CyclePredictionEngine.swift"; sourceTree = "<group>"; };
-		F5C3B99896F24BC6814A4AEF /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightEngine.swift"; path = "Dawt/Services/InsightEngine.swift"; sourceTree = "<group>"; };
-		53FFCC786B6E4CDBADDE532E /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LocalStore.swift"; path = "Dawt/Services/LocalStore.swift"; sourceTree = "<group>"; };
-		4AAF6118189942CD845BEAEF /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationScheduler.swift"; path = "Dawt/Services/NotificationScheduler.swift"; sourceTree = "<group>"; };
-		8A2A80F155A54E299D7BC57C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuthService.swift"; path = "Dawt/Services/Supabase/AuthService.swift"; sourceTree = "<group>"; };
-		11D2A2C3E12140F680484BCD /* PartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PartnerService.swift"; path = "Dawt/Services/Supabase/PartnerService.swift"; sourceTree = "<group>"; };
-		1C1839F6B8574CFE919C6627 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SupabaseClient.swift"; path = "Dawt/Services/Supabase/SupabaseClient.swift"; sourceTree = "<group>"; };
-		E516B427DE0149D1A22CE6BE /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SupabaseConfig.swift"; path = "Dawt/Services/Supabase/SupabaseConfig.swift"; sourceTree = "<group>"; };
-		78BD66ECB511487FB5973895 /* SymptomCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SymptomCatalog.swift"; path = "Dawt/Services/SymptomCatalog.swift"; sourceTree = "<group>"; };
-		49A81AA2A3F64AF6980AF349 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SyncService.swift"; path = "Dawt/Services/SyncService.swift"; sourceTree = "<group>"; };
-		DCDBCD7E37F248DA8299213E /* TrendsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrendsEngine.swift"; path = "Dawt/Services/TrendsEngine.swift"; sourceTree = "<group>"; };
-		63F24311A1A840CFB0FFFDC4 /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngineTests.swift"; path = "../../Tests/DawtTests/CyclePredictionEngineTests.swift"; sourceTree = "<group>"; };
-		8D75AEF5779949A7BFD2192E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dawt/Assets.xcassets; sourceTree = "<group>"; };
-		FCA12C83BB794C34A18120A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Dawt/Info.plist; sourceTree = "<group>"; };
-		70E6EFE49E5F422F8CFC8D13 /* Dawt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dawt/Dawt.entitlements; sourceTree = "<group>"; };
-		694A5F9A111C4F4AA2833862 /* Dawt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawt.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E73286C7C7A64DF1AD7C5E4F /* DawtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DawtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EC90B7D7C143F785CE85DA /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppState.swift"; path = "Dawt/App/AppState.swift"; sourceTree = "<group>"; };
+		FEDC2CC101C14122BC4A3CDB /* DawtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DawtApp.swift"; path = "Dawt/App/DawtApp.swift"; sourceTree = "<group>"; };
+		7705C8C913EC47989B065F59 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RootView.swift"; path = "Dawt/App/RootView.swift"; sourceTree = "<group>"; };
+		00F09AF8DEB541E9A86AEC1E /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DesignTokens.swift"; path = "Dawt/Design/DesignTokens.swift"; sourceTree = "<group>"; };
+		40C42FBE99014050B141AE81 /* AccountViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AccountViews.swift"; path = "Dawt/Features/Account/AccountViews.swift"; sourceTree = "<group>"; };
+		0806499315664DD4B45EA1D8 /* AssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AssistantView.swift"; path = "Dawt/Features/Assistant/AssistantView.swift"; sourceTree = "<group>"; };
+		51B5F0B8D1FE41D88EECA251 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CalendarView.swift"; path = "Dawt/Features/Calendar/CalendarView.swift"; sourceTree = "<group>"; };
+		C8C78A5CC43B44DD99EA0F22 /* DayLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DayLogView.swift"; path = "Dawt/Features/DayLog/DayLogView.swift"; sourceTree = "<group>"; };
+		A495840F6FF4450EA7651953 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightsView.swift"; path = "Dawt/Features/Insights/InsightsView.swift"; sourceTree = "<group>"; };
+		F007F5130CBD48D8894C064B /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OnboardingFlowView.swift"; path = "Dawt/Features/Onboarding/OnboardingFlowView.swift"; sourceTree = "<group>"; };
+		4CA85BA221E5455FB850473F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Dawt/Features/Settings/SettingsView.swift"; sourceTree = "<group>"; };
+		5766DFD6AA0044B48F71411E /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodayView.swift"; path = "Dawt/Features/Today/TodayView.swift"; sourceTree = "<group>"; };
+		D6589159AC784D0589F0EB81 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Models.swift"; path = "Dawt/Models/Models.swift"; sourceTree = "<group>"; };
+		03843E2A27F245A09198E0F5 /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AIProvider.swift"; path = "Dawt/Services/AI/AIProvider.swift"; sourceTree = "<group>"; };
+		569E61B650774854BA24C6C6 /* AppleOnDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppleOnDeviceProvider.swift"; path = "Dawt/Services/AI/AppleOnDeviceProvider.swift"; sourceTree = "<group>"; };
+		999D7896E6E54848AAFE96D0 /* GatewayAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GatewayAIProvider.swift"; path = "Dawt/Services/AI/GatewayAIProvider.swift"; sourceTree = "<group>"; };
+		E92C8FEA0EDB4FE1BF725A4B /* MockAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MockAIProvider.swift"; path = "Dawt/Services/AI/MockAIProvider.swift"; sourceTree = "<group>"; };
+		FC3642B5ABEA4196A74EAD83 /* OpenCompatibleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OpenCompatibleProvider.swift"; path = "Dawt/Services/AI/OpenCompatibleProvider.swift"; sourceTree = "<group>"; };
+		5270C197213540A896B3F0B1 /* CyclePredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngine.swift"; path = "Dawt/Services/CyclePredictionEngine.swift"; sourceTree = "<group>"; };
+		682CF7E18A2F4A5E83CB8E00 /* InsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "InsightEngine.swift"; path = "Dawt/Services/InsightEngine.swift"; sourceTree = "<group>"; };
+		1449F8181E5A4068BB9078D5 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LocalStore.swift"; path = "Dawt/Services/LocalStore.swift"; sourceTree = "<group>"; };
+		695F838A3D2F4794A6AA3B47 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NotificationScheduler.swift"; path = "Dawt/Services/NotificationScheduler.swift"; sourceTree = "<group>"; };
+		A9F6D4EC15B947B6A356A407 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuthService.swift"; path = "Dawt/Services/Supabase/AuthService.swift"; sourceTree = "<group>"; };
+		24EF8BE8BA5F4CA397F30F85 /* PartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PartnerService.swift"; path = "Dawt/Services/Supabase/PartnerService.swift"; sourceTree = "<group>"; };
+		26086E2730D84244A03D6A38 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SupabaseClient.swift"; path = "Dawt/Services/Supabase/SupabaseClient.swift"; sourceTree = "<group>"; };
+		B05868010C024A68A670A6F0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SupabaseConfig.swift"; path = "Dawt/Services/Supabase/SupabaseConfig.swift"; sourceTree = "<group>"; };
+		B13D7352D998412D9568E768 /* SymptomCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SymptomCatalog.swift"; path = "Dawt/Services/SymptomCatalog.swift"; sourceTree = "<group>"; };
+		7C4957D86C19430DB6CBEF36 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SyncService.swift"; path = "Dawt/Services/SyncService.swift"; sourceTree = "<group>"; };
+		1849EE64180445DDBCEF2E65 /* TrendsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrendsEngine.swift"; path = "Dawt/Services/TrendsEngine.swift"; sourceTree = "<group>"; };
+		B986EA6363644ACCA32602DE /* CyclePredictionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CyclePredictionEngineTests.swift"; path = "../../Tests/DawtTests/CyclePredictionEngineTests.swift"; sourceTree = "<group>"; };
+		DEE464EDAC364D9FBEBCE900 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dawt/Assets.xcassets; sourceTree = "<group>"; };
+		579A1D90FA604F30A912D932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Dawt/Info.plist; sourceTree = "<group>"; };
+		4071237CBFAF432A834F3B44 /* Dawt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dawt/Dawt.entitlements; sourceTree = "<group>"; };
+		45920457CD044B3890242EDC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		3C29019DC2514F40BEE66B3A /* Dawt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A73A98F4A1FD440181502BBB /* DawtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DawtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F46FF4E818794345A23842FD /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
-		695822E98BC449FEBE91F9AD /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		425943110CB94E20A4E7DEDF /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		D04B1263C0AA42CAA44AE424 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D218FC9A90AA4E39B4E0935F = {
+		9A276404C5A34E0586A42E6D = {
 			isa = PBXGroup;
 			children = (
-				2594D13BF8944BC4BDE5DE42 /* Sources */,
-				C9D7C4B0709843069D3FABC7 /* Tests */,
-				8D75AEF5779949A7BFD2192E /* Assets.xcassets */,
-				FCA12C83BB794C34A18120A9 /* Info.plist */,
-				70E6EFE49E5F422F8CFC8D13 /* Dawt.entitlements */,
-				DC980861DA9F49B98C7758DB /* Products */,
+				10C115D2303742F881C91B5A /* Sources */,
+				67DE6FD465E44317A2B6F775 /* Tests */,
+				DEE464EDAC364D9FBEBCE900 /* Assets.xcassets */,
+				579A1D90FA604F30A912D932 /* Info.plist */,
+				4071237CBFAF432A834F3B44 /* Dawt.entitlements */,
+				45920457CD044B3890242EDC /* Config.xcconfig */,
+				1EFF89FF3C8D44DB8C80AF3D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DC980861DA9F49B98C7758DB /* Products */ = {
+		1EFF89FF3C8D44DB8C80AF3D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				694A5F9A111C4F4AA2833862 /* Dawt.app */,
-				E73286C7C7A64DF1AD7C5E4F /* DawtTests.xctest */,
+				3C29019DC2514F40BEE66B3A /* Dawt.app */,
+				A73A98F4A1FD440181502BBB /* DawtTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2594D13BF8944BC4BDE5DE42 /* Sources */ = {
+		10C115D2303742F881C91B5A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				041D47455B904C6D9E9D518B /* AppState.swift */,
-				2DDAEEB6B9DF4413919A2816 /* DawtApp.swift */,
-				5462614F09F54623AC74F48C /* RootView.swift */,
-				CDCFCA8280C8494FB930869F /* DesignTokens.swift */,
-				FCEF5EEA85F54AC3AC9F5C99 /* AccountViews.swift */,
-				C94B12A222564612A4E30FBC /* AssistantView.swift */,
-				D5B69DC688714246BF04A973 /* CalendarView.swift */,
-				F3FADD04C5014CC0846BA16D /* DayLogView.swift */,
-				A4ADAA1F73384132B92D6A84 /* InsightsView.swift */,
-				3032A523A4364DB49D22000C /* OnboardingFlowView.swift */,
-				37DBEDA47D604DCBB99B1EAD /* SettingsView.swift */,
-				64DFE223D46442E4A0788BBE /* TodayView.swift */,
-				E2971B96BF7A4ED1B3529203 /* Models.swift */,
-				CEE91B628C1C4260AE73A7E7 /* AIProvider.swift */,
-				428A3474424147138445ABC8 /* AppleOnDeviceProvider.swift */,
-				810351491068468A9EC94B17 /* GatewayAIProvider.swift */,
-				3B15A56D3151425CB6F290F0 /* MockAIProvider.swift */,
-				131D7DDD39854A26AC179350 /* OpenCompatibleProvider.swift */,
-				D541F421AEE549B4ABF479B5 /* CyclePredictionEngine.swift */,
-				F5C3B99896F24BC6814A4AEF /* InsightEngine.swift */,
-				53FFCC786B6E4CDBADDE532E /* LocalStore.swift */,
-				4AAF6118189942CD845BEAEF /* NotificationScheduler.swift */,
-				8A2A80F155A54E299D7BC57C /* AuthService.swift */,
-				11D2A2C3E12140F680484BCD /* PartnerService.swift */,
-				1C1839F6B8574CFE919C6627 /* SupabaseClient.swift */,
-				E516B427DE0149D1A22CE6BE /* SupabaseConfig.swift */,
-				78BD66ECB511487FB5973895 /* SymptomCatalog.swift */,
-				49A81AA2A3F64AF6980AF349 /* SyncService.swift */,
-				DCDBCD7E37F248DA8299213E /* TrendsEngine.swift */,
+				B7EC90B7D7C143F785CE85DA /* AppState.swift */,
+				FEDC2CC101C14122BC4A3CDB /* DawtApp.swift */,
+				7705C8C913EC47989B065F59 /* RootView.swift */,
+				00F09AF8DEB541E9A86AEC1E /* DesignTokens.swift */,
+				40C42FBE99014050B141AE81 /* AccountViews.swift */,
+				0806499315664DD4B45EA1D8 /* AssistantView.swift */,
+				51B5F0B8D1FE41D88EECA251 /* CalendarView.swift */,
+				C8C78A5CC43B44DD99EA0F22 /* DayLogView.swift */,
+				A495840F6FF4450EA7651953 /* InsightsView.swift */,
+				F007F5130CBD48D8894C064B /* OnboardingFlowView.swift */,
+				4CA85BA221E5455FB850473F /* SettingsView.swift */,
+				5766DFD6AA0044B48F71411E /* TodayView.swift */,
+				D6589159AC784D0589F0EB81 /* Models.swift */,
+				03843E2A27F245A09198E0F5 /* AIProvider.swift */,
+				569E61B650774854BA24C6C6 /* AppleOnDeviceProvider.swift */,
+				999D7896E6E54848AAFE96D0 /* GatewayAIProvider.swift */,
+				E92C8FEA0EDB4FE1BF725A4B /* MockAIProvider.swift */,
+				FC3642B5ABEA4196A74EAD83 /* OpenCompatibleProvider.swift */,
+				5270C197213540A896B3F0B1 /* CyclePredictionEngine.swift */,
+				682CF7E18A2F4A5E83CB8E00 /* InsightEngine.swift */,
+				1449F8181E5A4068BB9078D5 /* LocalStore.swift */,
+				695F838A3D2F4794A6AA3B47 /* NotificationScheduler.swift */,
+				A9F6D4EC15B947B6A356A407 /* AuthService.swift */,
+				24EF8BE8BA5F4CA397F30F85 /* PartnerService.swift */,
+				26086E2730D84244A03D6A38 /* SupabaseClient.swift */,
+				B05868010C024A68A670A6F0 /* SupabaseConfig.swift */,
+				B13D7352D998412D9568E768 /* SymptomCatalog.swift */,
+				7C4957D86C19430DB6CBEF36 /* SyncService.swift */,
+				1849EE64180445DDBCEF2E65 /* TrendsEngine.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		C9D7C4B0709843069D3FABC7 /* Tests */ = {
+		67DE6FD465E44317A2B6F775 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				63F24311A1A840CFB0FFFDC4 /* CyclePredictionEngineTests.swift */,
+				B986EA6363644ACCA32602DE /* CyclePredictionEngineTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -159,127 +161,127 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA2C75B372ED49DA808F8807 /* Dawt */ = {
+		B454FB5660A84E34B2E993BD /* Dawt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7ED0904365D4A40B7825A08 /* Build configuration list for PBXNativeTarget "Dawt" */;
+			buildConfigurationList = C4D4A60FFE074BBD9DB8F69C /* Build configuration list for PBXNativeTarget "Dawt" */;
 			buildPhases = (
-				AC91893B710F49689098CE30 /* Sources */,
-				F46FF4E818794345A23842FD /* Frameworks */,
-				0DF513F2A1DD44C08ABCAD0B /* Resources */,
+				5556670984B14A68A4AEBBD7 /* Sources */,
+				425943110CB94E20A4E7DEDF /* Frameworks */,
+				8A793505BAD84830BEFDA736 /* Resources */,
 			);
 			buildRules = ();
 			dependencies = ();
 			name = Dawt;
 			productName = Dawt;
-			productReference = 694A5F9A111C4F4AA2833862 /* Dawt.app */;
+			productReference = 3C29019DC2514F40BEE66B3A /* Dawt.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8CF5B7AEA9F485E91D5B1B7 /* DawtTests */ = {
+		8A04E3839AA24D5097351F66 /* DawtTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5C42498200C468291E422B2 /* Build configuration list for PBXNativeTarget "DawtTests" */;
+			buildConfigurationList = 374F6985C7E64C9FAF3BE1C9 /* Build configuration list for PBXNativeTarget "DawtTests" */;
 			buildPhases = (
-				2630B69BFDCD405A983B514D /* Sources */,
-				695822E98BC449FEBE91F9AD /* Frameworks */,
+				CB5F83ECE567406996EC33A2 /* Sources */,
+				D04B1263C0AA42CAA44AE424 /* Frameworks */,
 			);
 			buildRules = ();
 			dependencies = (
-				7F3AA82B422F49E1B5ABAB2D /* PBXTargetDependency */,
+				4E81968D307E4E7E9F845916 /* PBXTargetDependency */,
 			);
 			name = DawtTests;
 			productName = DawtTests;
-			productReference = E73286C7C7A64DF1AD7C5E4F /* DawtTests.xctest */;
+			productReference = A73A98F4A1FD440181502BBB /* DawtTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A5716A01303F426EAB28D4E2 /* Project object */ = {
+		64A392F797364EB196DFF25C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					EA2C75B372ED49DA808F8807 = { CreatedOnToolsVersion = 16.0; };
-					B8CF5B7AEA9F485E91D5B1B7 = { CreatedOnToolsVersion = 16.0; TestTargetID = EA2C75B372ED49DA808F8807; };
+					B454FB5660A84E34B2E993BD = { CreatedOnToolsVersion = 16.0; };
+					8A04E3839AA24D5097351F66 = { CreatedOnToolsVersion = 16.0; TestTargetID = B454FB5660A84E34B2E993BD; };
 				};
 			};
-			buildConfigurationList = 6F165C831199469181CB3F58 /* Build configuration list for PBXProject "Dawt" */;
+			buildConfigurationList = CA351DEF151B4799849CA404 /* Build configuration list for PBXProject "Dawt" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (en, Base);
-			mainGroup = D218FC9A90AA4E39B4E0935F;
-			productRefGroup = DC980861DA9F49B98C7758DB /* Products */;
+			mainGroup = 9A276404C5A34E0586A42E6D;
+			productRefGroup = 1EFF89FF3C8D44DB8C80AF3D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA2C75B372ED49DA808F8807 /* Dawt */,
-				B8CF5B7AEA9F485E91D5B1B7 /* DawtTests */,
+				B454FB5660A84E34B2E993BD /* Dawt */,
+				8A04E3839AA24D5097351F66 /* DawtTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0DF513F2A1DD44C08ABCAD0B /* Resources */ = {
+		8A793505BAD84830BEFDA736 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9EE43EDAD06423EA37B1B75 /* Assets.xcassets in Resources */,
+				4351226A9D4D45FA9EAFB6E6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AC91893B710F49689098CE30 /* Sources */ = {
+		5556670984B14A68A4AEBBD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3954E47C0AE43CC9BD9B7AC /* in Sources */,
-				DAF0D9130A7942FD9C4F5100 /* in Sources */,
-				07EF92B4ABA94CB9A5727FEC /* in Sources */,
-				B1382B889FF442C19B5D558F /* in Sources */,
-				F70AD9C066984A44872E393B /* in Sources */,
-				08D68183B63E48F1AD717F22 /* in Sources */,
-				19F96EF33AA84735983E225D /* in Sources */,
-				6CBE43D667D643BB8A087C79 /* in Sources */,
-				F6906EA6BEBF4BA6913301FE /* in Sources */,
-				3A457287E21F42E2BB1D4602 /* in Sources */,
-				50B421499D94446EBFA56DC6 /* in Sources */,
-				6AA913F8A0EF4F34979477E7 /* in Sources */,
-				5210470FA295472EA5E12B89 /* in Sources */,
-				8E0806A0680241478FB88CAD /* in Sources */,
-				FE0BC71E560F4620B394705C /* in Sources */,
-				DACEEE1D2D6E43A48E08DDC5 /* in Sources */,
-				2351AD338E844C3F98EB1C7D /* in Sources */,
-				6399D245E1E542978A523FDF /* in Sources */,
-				5D577AD69BF44CE084A3A4FA /* in Sources */,
-				7EFD4E1228684A55A6918A43 /* in Sources */,
-				7BF5F9C150E5470DA85EED12 /* in Sources */,
-				10EDF98C5E75441A8C5267FC /* in Sources */,
-				2AA4F2186AA44C4292BEF965 /* in Sources */,
-				79CB6C2FFC644FD091917B03 /* in Sources */,
-				7744BA492DE74D42B09BBD1F /* in Sources */,
-				1726BF2F585247E2829E4BC2 /* in Sources */,
-				CD1E72AE20204877818489E6 /* in Sources */,
-				3CA37A72AA8B4A49818ED803 /* in Sources */,
-				D27F5F66D66848CDA95E01B6 /* in Sources */,
+				FD47F4A565BC405981C064D6 /* in Sources */,
+				D09D246F6B0C423681BE213A /* in Sources */,
+				64E163DBC1D845FABCC9B721 /* in Sources */,
+				546CC9C8CBBB406589708502 /* in Sources */,
+				744C2314C4B8498ABDE61C0D /* in Sources */,
+				EE7DA96954E64352ACB90932 /* in Sources */,
+				8A93119D1345463A958DC153 /* in Sources */,
+				B13857E5EA7D4C6FA6CE1310 /* in Sources */,
+				AB0B0A01340F4623A518174E /* in Sources */,
+				BBF84CF49C0E4952BB6D43BD /* in Sources */,
+				2AD251683BFF4A0CAACF9E36 /* in Sources */,
+				F98E26660F4940AB8BC36FE8 /* in Sources */,
+				17C54583F8A443D0B408052A /* in Sources */,
+				D2F8AF1BF40F4BDDBD6EB91E /* in Sources */,
+				2CBD723CEC0B4085851AA1F5 /* in Sources */,
+				CCEE003801E940C09E94EB79 /* in Sources */,
+				332A81CB67354B5CA6F6FB03 /* in Sources */,
+				F4E9AB3E5F0C42F68D9F6E78 /* in Sources */,
+				8FC49D1F48794DDEB765FE76 /* in Sources */,
+				BD325646014F44DE85EDF4A9 /* in Sources */,
+				0E93EFEB6DE343CE9E7CC31B /* in Sources */,
+				75B2CF71AF074762A42BC287 /* in Sources */,
+				2FAC4FA2F2E840BBA75EC938 /* in Sources */,
+				36F7449EB9304B2F949FE215 /* in Sources */,
+				6073A5BAF6EC488BAD235C0D /* in Sources */,
+				470B8F72C1994F60B3BFCAE1 /* in Sources */,
+				49C19886CE1144E8B18F5F30 /* in Sources */,
+				9985FE182ED94AABB700CC28 /* in Sources */,
+				4066A31FB824463297881EEB /* in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2630B69BFDCD405A983B514D /* Sources */ = {
+		CB5F83ECE567406996EC33A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				900C0E9F54914FEB99ED513E /* in Sources */,
+				6F8F826645ED439AA5FD9A15 /* in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A6390DC825074EDCA7057D30 /* Debug */ = {
+		A534BE1DF81B47E9A790D06D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -292,7 +294,7 @@
 			};
 			name = Debug;
 		};
-		332F8DC18B5148E9844EE5CB /* Release */ = {
+		2BD0E87393CE4751923C61F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -303,8 +305,9 @@
 			};
 			name = Release;
 		};
-		03E450C637054CE7A5A6BDB8 /* Debug */ = {
+		35CA19343BA64427A3A4E9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45920457CD044B3890242EDC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dawt/Dawt.entitlements;
@@ -324,8 +327,9 @@
 			};
 			name = Debug;
 		};
-		2897EF16FD7C4E5B98F1EB76 /* Release */ = {
+		48A26E7C673E407F9FD8285A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45920457CD044B3890242EDC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dawt/Dawt.entitlements;
@@ -345,7 +349,7 @@
 			};
 			name = Release;
 		};
-		8BE552D24C9F4870A268414A /* Debug */ = {
+		50B9A44744C043FA857B9285 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -361,7 +365,7 @@
 			};
 			name = Debug;
 		};
-		26C25F7E8B174096AC0031F2 /* Release */ = {
+		DBF317D549C540B296C06C46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -380,25 +384,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F165C831199469181CB3F58 /* Build configuration list for PBXProject "Dawt" */ = {
+		CA351DEF151B4799849CA404 /* Build configuration list for PBXProject "Dawt" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (A6390DC825074EDCA7057D30 /* Debug */, 332F8DC18B5148E9844EE5CB /* Release */);
+			buildConfigurations = (A534BE1DF81B47E9A790D06D /* Debug */, 2BD0E87393CE4751923C61F3 /* Release */);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7ED0904365D4A40B7825A08 /* Build configuration list for PBXNativeTarget "Dawt" */ = {
+		C4D4A60FFE074BBD9DB8F69C /* Build configuration list for PBXNativeTarget "Dawt" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (03E450C637054CE7A5A6BDB8 /* Debug */, 2897EF16FD7C4E5B98F1EB76 /* Release */);
+			buildConfigurations = (35CA19343BA64427A3A4E9E7 /* Debug */, 48A26E7C673E407F9FD8285A /* Release */);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5C42498200C468291E422B2 /* Build configuration list for PBXNativeTarget "DawtTests" */ = {
+		374F6985C7E64C9FAF3BE1C9 /* Build configuration list for PBXNativeTarget "DawtTests" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (8BE552D24C9F4870A268414A /* Debug */, 26C25F7E8B174096AC0031F2 /* Release */);
+			buildConfigurations = (50B9A44744C043FA857B9285 /* Debug */, DBF317D549C540B296C06C46 /* Release */);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A5716A01303F426EAB28D4E2 /* Project object */;
+	rootObject = 64A392F797364EB196DFF25C /* Project object */;
 }

@@ -52,12 +52,19 @@ python3 scripts/ai_eval.py
 ## Supabase (optional cloud sync + AI gateway)
 
 1. Create a Supabase project.
-2. Apply [`supabase/migrations/20260804120000_dawt_init.sql`](supabase/migrations/20260804120000_dawt_init.sql).
-3. Run an open-weight server locally, e.g. `ollama pull llama3.2 && ollama serve`.
-4. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `DAWT_OSS_BASE_URL` (e.g. your Ollama/vLLM OpenAI-compatible URL) and `DAWT_OSS_MODEL` (default `llama3.2`).
-5. In the app Settings, pick **Ollama**, **Self-hosted open-weight**, or **dawt gateway**; set `DAWT_AI_GATEWAY_URL` when using the gateway.
+2. Apply migrations under [`supabase/migrations`](supabase/migrations).
+3. Copy local secrets (never commit real keys):
 
-Closed-source hosted model APIs are intentionally unsupported.
+```bash
+cp ios/Dawt/Secrets.xcconfig.example ios/Dawt/Secrets.xcconfig
+# fill DAWT_SUPABASE_URL + DAWT_SUPABASE_ANON_KEY from Supabase → Project Settings → API
+```
+
+4. Run an open-weight server locally, e.g. `ollama pull llama3.2 && ollama serve`.
+5. Deploy [`supabase/functions/ai-gateway`](supabase/functions/ai-gateway) with `DAWT_OSS_BASE_URL` (e.g. your Ollama/vLLM OpenAI-compatible URL) and `DAWT_OSS_MODEL` (default `llama3.2`).
+6. In the app Settings, pick **Ollama**, **Self-hosted open-weight**, or **dawt gateway**; set `DAWT_AI_GATEWAY_URL` when using the gateway.
+
+Closed-source hosted model APIs are intentionally unsupported. Do not commit service-role keys, Apple `.p8` keys, or `Secrets.xcconfig`.
 
 ## Trademark notice
 

@@ -1,0 +1,5 @@
+// Shared build settings. Local credentials live in Secrets.xcconfig (gitignored).
+// Empty defaults keep clean clones building; cloud features stay off until Secrets is present.
+DAWT_SUPABASE_URL =
+DAWT_SUPABASE_ANON_KEY =
+#include? "Secrets.xcconfig"

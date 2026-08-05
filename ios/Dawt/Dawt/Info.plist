@@ -39,8 +39,8 @@
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>dawt sends optional reminders for period predictions and daily logging. Notification text stays generic by default.</string>
 	<key>DAWTSupabaseURL</key>
-	<string>https://cllwflcvcfitfxotfleq.supabase.co</string>
+	<string>$(DAWT_SUPABASE_URL)</string>
 	<key>DAWTSupabaseAnonKey</key>
-	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsbHdmbGN2Y2ZpdGZ4b3RmbGVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU3MzA5MjgsImV4cCI6MjEwMTMwNjkyOH0.eiVrjkF6kiSsc6jexKBkwbg3vEFdSuekHT2oobBoLl4</string>
+	<string>$(DAWT_SUPABASE_ANON_KEY)</string>
 </dict>
 </plist>

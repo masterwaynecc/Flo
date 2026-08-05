@@ -18,11 +18,21 @@ Package.resolved
 # macOS
 .DS_Store
 
-# Secrets
+# Secrets / credentials (never commit)
 .env
 .env.*
+!.env.example
 *.pem
+*.p8
+*.p12
 Secrets.xcconfig
+**/Secrets.xcconfig
+**/Secrets.plist
+**/GoogleService-Info.plist
+**/AuthKey_*.p8
+*.mobileprovision
+credentials.json
+service-account*.json
 
 # Exports / local
 dawt-export.json

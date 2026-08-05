@@ -26,7 +26,7 @@ def main() -> None:
         "test_sources", "test_frameworks",
         "proj_configs", "app_configs", "test_configs",
         "dbg_proj", "rel_proj", "dbg_app", "rel_app", "dbg_test", "rel_test",
-        "assets", "assets_build", "info", "entitlements",
+        "assets", "assets_build", "info", "entitlements", "xcconfig",
         "container", "target_dep",
     ]}
 
@@ -58,6 +58,7 @@ def main() -> None:
         f'\t\t{ids["assets"]} /* Assets.xcassets */ = {{isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dawt/Assets.xcassets; sourceTree = "<group>"; }};',
         f'\t\t{ids["info"]} /* Info.plist */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Dawt/Info.plist; sourceTree = "<group>"; }};',
         f'\t\t{ids["entitlements"]} /* Dawt.entitlements */ = {{isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dawt/Dawt.entitlements; sourceTree = "<group>"; }};',
+        f'\t\t{ids["xcconfig"]} /* Config.xcconfig */ = {{isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; }};',
         f'\t\t{ids["app_product"]} /* Dawt.app */ = {{isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawt.app; sourceTree = BUILT_PRODUCTS_DIR; }};',
         f'\t\t{ids["test_product"]} /* DawtTests.xctest */ = {{isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DawtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; }};',
     ]
@@ -104,6 +105,7 @@ def main() -> None:
 \t\t\t\t{ids["assets"]} /* Assets.xcassets */,
 \t\t\t\t{ids["info"]} /* Info.plist */,
 \t\t\t\t{ids["entitlements"]} /* Dawt.entitlements */,
+\t\t\t\t{ids["xcconfig"]} /* Config.xcconfig */,
 \t\t\t\t{ids["products"]} /* Products */,
 \t\t\t);
 \t\t\tsourceTree = "<group>";
@@ -254,6 +256,7 @@ def main() -> None:
 \t\t}};
 \t\t{ids["dbg_app"]} /* Debug */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids["xcconfig"]} /* Config.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Dawt/Dawt.entitlements;
@@ -275,6 +278,7 @@ def main() -> None:
 \t\t}};
 \t\t{ids["rel_app"]} /* Release */ = {{
 \t\t\tisa = XCBuildConfiguration;
+\t\t\tbaseConfigurationReference = {ids["xcconfig"]} /* Config.xcconfig */;
 \t\t\tbuildSettings = {{
 \t\t\t\tASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 \t\t\t\tCODE_SIGN_ENTITLEMENTS = Dawt/Dawt.entitlements;

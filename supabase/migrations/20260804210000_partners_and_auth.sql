@@ -1,5 +1,4 @@
 -- Partner sharing + profile helpers for dawt
--- Matches remote schema on project cllwflcvcfitfxotfleq
 
 create or replace function public.handle_new_user()
 returns trigger
