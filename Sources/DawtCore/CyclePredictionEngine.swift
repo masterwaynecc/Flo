@@ -83,27 +83,52 @@ public struct CyclePredictionEngine: Sendable {
         let prediction = predict(profile: profile, logs: logs, asOf: date)
         let cal = Calendar.current
         let day = cal.startOfDay(for: date)
-        if let log = logs.first(where: { cal.isDate($0.date, inSameDayAs: day) }), log.flow.isPeriod {
-            return .loggedPeriod
+        let today = cal.startOfDay(for: Date())
+        let loggedPeriod = logs.contains { cal.isDate($0.date, inSameDayAs: day) && $0.flow.isPeriod }
+
+        if loggedPeriod {
+            return day > today ? .predictedPeriod : .loggedPeriod
         }
+
+        if let periodMarker = expectedPeriodMarker(
+            day: day,
+            today: today,
+            start: currentPeriodStart(profile: profile, logs: logs),
+            length: prediction.periodLength
+        ) {
+            return periodMarker
+        }
+
         if let ov = prediction.ovulationDay, cal.isDate(ov, inSameDayAs: day) {
             return .ovulation
         }
         if let fertile = prediction.fertileWindow, fertile.contains(day) {
             return .fertile
         }
-        if let next = prediction.nextPeriodStart {
-            let nextStart = cal.startOfDay(for: next)
-            let periodEnd = cal.date(byAdding: .day, value: prediction.periodLength - 1, to: nextStart) ?? nextStart
-            if day >= nextStart && day <= periodEnd {
-                let hasLoggedOnDay = logs.contains { cal.isDate($0.date, inSameDayAs: day) && $0.flow.isPeriod }
-                if !hasLoggedOnDay {
-                    let today = cal.startOfDay(for: Date())
-                    return day < today ? .overduePeriod : .predictedPeriod
-                }
-            }
+        if let next = prediction.nextPeriodStart,
+           let periodMarker = expectedPeriodMarker(
+            day: day,
+            today: today,
+            start: cal.startOfDay(for: next),
+            length: prediction.periodLength
+           ) {
+            return periodMarker
         }
         return .none
+    }
+
+    private func expectedPeriodMarker(day: Date, today: Date, start: Date?, length: Int) -> DayMarker? {
+        guard let start else { return nil }
+        let cal = Calendar.current
+        let end = cal.date(byAdding: .day, value: max(length, 1) - 1, to: start) ?? start
+        guard day >= start && day <= end else { return nil }
+        return day < today ? .overduePeriod : .predictedPeriod
+    }
+
+    private func currentPeriodStart(profile: UserProfile, logs: [DayLog]) -> Date? {
+        let cal = Calendar.current
+        return detectPeriodStarts(from: logs).last
+            ?? profile.lastPeriodStart.map { cal.startOfDay(for: $0) }
     }
 
     public enum DayMarker {

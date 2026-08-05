@@ -63,6 +63,7 @@ final class AppState: ObservableObject {
     }
 
     func bootstrap() async {
+        clearFuturePeriodLogs()
         await authService.restoreSession()
         applyPendingDisplayName()
         if authService.isSignedIn {
@@ -217,12 +218,29 @@ final class AppState: ObservableObject {
 
     private func seedPeriodDays(from start: Date, length: Int) {
         let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        let startDay = cal.startOfDay(for: start)
         for offset in 0..<max(length, 1) {
-            guard let day = cal.date(byAdding: .day, value: offset, to: cal.startOfDay(for: start)) else { continue }
+            guard let day = cal.date(byAdding: .day, value: offset, to: startDay) else { continue }
+            // Only seed days that have already happened — remaining period days stay predictions.
+            guard day <= today else { break }
             var log = logFor(date: day) ?? DayLog(date: day)
             log.flow = offset == 0 ? .medium : (offset < length - 1 ? .light : .spotting)
             upsertDayLog(log, sync: false)
         }
+    }
+
+    /// Onboarding used to pre-log the full period length into the future; strip those so they show as predictions.
+    private func clearFuturePeriodLogs() {
+        let today = Calendar.current.startOfDay(for: Date())
+        var changed = false
+        for idx in dayLogs.indices where dayLogs[idx].date > today && dayLogs[idx].flow.isPeriod {
+            dayLogs[idx].flow = .none
+            dayLogs[idx].updatedAt = Date()
+            syncService.enqueue(dayLogs[idx])
+            changed = true
+        }
+        if changed { persist() }
     }
 
     private func requestNotificationPermissionIfNeeded() async {

@@ -10,7 +10,16 @@ enum PartnerCalendarMarkers {
         let periodLength = max(snapshot.periodLength ?? 5, 1)
 
         if logged.contains(key) {
-            return .loggedPeriod
+            // Future “logged” rows are treated as predictions until that day arrives.
+            return day > today ? .predictedPeriod : .loggedPeriod
+        }
+
+        if let start = parseDay(snapshot.periodStart) {
+            let end = parseDay(snapshot.periodEnd)
+                ?? cal.date(byAdding: .day, value: periodLength - 1, to: start)
+            if let end, day >= start, day <= end {
+                return day < today ? .overduePeriod : .predictedPeriod
+            }
         }
 
         if let ovulation = parseDay(snapshot.ovulationDay), cal.isDate(ovulation, inSameDayAs: day) {
