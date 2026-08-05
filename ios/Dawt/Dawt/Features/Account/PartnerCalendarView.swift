@@ -1,16 +1,7 @@
 import SwiftUI
 
-enum PartnerDayStyle: Equatable {
-    case none
-    case loggedPeriod
-    case predictedPeriod
-    case overduePeriod
-    case fertile
-    case ovulation
-}
-
 enum PartnerCalendarMarkers {
-    static func style(for date: Date, snapshot: CycleShareSnapshotDTO) -> PartnerDayStyle {
+    static func style(for date: Date, snapshot: CycleShareSnapshotDTO) -> CycleDayStyle {
         let cal = Calendar.current
         let day = cal.startOfDay(for: date)
         let key = dayKey(day)
@@ -38,10 +29,7 @@ enum PartnerCalendarMarkers {
             if let predictedEnd = cal.date(byAdding: .day, value: periodLength - 1, to: nextStart),
                day >= nextStart,
                day <= predictedEnd {
-                if day < today {
-                    return .overduePeriod
-                }
-                return .predictedPeriod
+                return day < today ? .overduePeriod : .predictedPeriod
             }
         }
 
@@ -75,7 +63,7 @@ struct PartnerCalendarView: View {
     @State private var showHowItWorks = true
 
     private let cal = Calendar.current
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 
     var body: some View {
         ZStack {
@@ -84,16 +72,16 @@ struct PartnerCalendarView: View {
                 summaryHeader
                 monthHeader
                 weekdayHeader
-                LazyVGrid(columns: columns, spacing: 8) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(daysInMonth, id: \.self) { date in
                         if let date {
                             dayCell(date)
                         } else {
-                            Color.clear.frame(height: 48)
+                            Color.clear.frame(height: 44)
                         }
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 12)
 
                 Button {
                     showHowItWorks = true
@@ -177,56 +165,21 @@ struct PartnerCalendarView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
     }
 
     private func dayCell(_ date: Date) -> some View {
         let style = PartnerCalendarMarkers.style(for: date, snapshot: snapshot)
         let day = cal.component(.day, from: date)
-        let isToday = cal.isDateInToday(date)
-
-        return ZStack {
-            circleBackground(style)
-            Text("\(day)")
-                .font(DawtType.body(15, weight: isToday || style == .loggedPeriod || style == .overduePeriod ? .bold : .regular))
-                .foregroundStyle(numberColor(style))
-        }
+        return CycleDayChip(
+            day: day,
+            style: style,
+            size: 40,
+            emphasizeToday: cal.isDateInToday(date)
+        )
         .frame(maxWidth: .infinity)
-        .frame(height: 48)
+        .frame(height: 44)
         .accessibilityLabel(accessibility(day: day, style: style))
-    }
-
-    @ViewBuilder
-    private func circleBackground(_ style: PartnerDayStyle) -> some View {
-        switch style {
-        case .loggedPeriod:
-            Circle().fill(DawtColor.period)
-        case .predictedPeriod:
-            Circle()
-                .strokeBorder(DawtColor.period, style: StrokeStyle(lineWidth: 2, dash: [3, 3]))
-        case .overduePeriod:
-            Circle().fill(Color(white: 0.82))
-        case .ovulation:
-            Circle()
-                .strokeBorder(DawtColor.fertile, style: StrokeStyle(lineWidth: 2, dash: [3, 3]))
-        case .fertile, .none:
-            EmptyView()
-        }
-    }
-
-    private func numberColor(_ style: PartnerDayStyle) -> Color {
-        switch style {
-        case .loggedPeriod:
-            return .white
-        case .fertile, .ovulation:
-            return DawtColor.fertile
-        case .predictedPeriod:
-            return DawtColor.period
-        case .overduePeriod:
-            return DawtColor.ink
-        case .none:
-            return DawtColor.ink
-        }
     }
 
     private var daysInMonth: [Date?] {
@@ -241,7 +194,7 @@ struct PartnerCalendarView: View {
         return cells
     }
 
-    private func accessibility(day: Int, style: PartnerDayStyle) -> String {
+    private func accessibility(day: Int, style: CycleDayStyle) -> String {
         switch style {
         case .none: return "\(day)"
         case .loggedPeriod: return "\(day), logged period"
@@ -281,35 +234,40 @@ struct PartnerHowItWorksView: View {
                             .foregroundStyle(.white.opacity(0.85))
 
                         VStack(alignment: .leading, spacing: 22) {
-                            legendRow(
-                                sample: .predictedPeriod,
+                            CycleDayLegendRow(
+                                style: .predictedPeriod,
                                 title: "Pink dotted-circle days",
                                 titleColor: DawtColor.period,
-                                detail: "\(possessive) predicted period days"
+                                detail: "\(possessive) predicted period days",
+                                onDark: true
                             )
-                            legendRow(
-                                sample: .loggedPeriod,
+                            CycleDayLegendRow(
+                                style: .loggedPeriod,
                                 title: "Pink filled days",
                                 titleColor: DawtColor.period,
-                                detail: "\(possessive) logged period days"
+                                detail: "\(possessive) logged period days",
+                                onDark: true
                             )
-                            legendRow(
-                                sample: .fertile,
+                            CycleDayLegendRow(
+                                style: .fertile,
                                 title: "Teal days",
                                 titleColor: DawtColor.fertile,
-                                detail: "\(possessive) predicted fertile window"
+                                detail: "\(possessive) predicted fertile window",
+                                onDark: true
                             )
-                            legendRow(
-                                sample: .ovulation,
+                            CycleDayLegendRow(
+                                style: .ovulation,
                                 title: "Teal dotted-circle days",
                                 titleColor: DawtColor.fertile,
-                                detail: "\(possessive) predicted ovulation days"
+                                detail: "\(possessive) predicted ovulation days",
+                                onDark: true
                             )
-                            legendRow(
-                                sample: .overduePeriod,
+                            CycleDayLegendRow(
+                                style: .overduePeriod,
                                 title: "Gray filled days",
                                 titleColor: Color(white: 0.75),
-                                detail: "\(possessive) period has not been logged"
+                                detail: "\(possessive) period has not been logged",
+                                onDark: true
                             )
                         }
 
@@ -345,45 +303,5 @@ struct PartnerHowItWorksView: View {
             }
         }
         .presentationDetents([.large])
-    }
-
-    private func legendRow(
-        sample: PartnerDayStyle,
-        title: String,
-        titleColor: Color,
-        detail: String
-    ) -> some View {
-        HStack(spacing: 16) {
-            sampleChip(sample)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(DawtType.body(16, weight: .semibold))
-                    .foregroundStyle(titleColor)
-                Text(detail)
-                    .font(DawtType.body(15))
-                    .foregroundStyle(.white)
-            }
-        }
-    }
-
-    private func sampleChip(_ style: PartnerDayStyle) -> some View {
-        ZStack {
-            switch style {
-            case .loggedPeriod:
-                Circle().fill(DawtColor.period)
-            case .predictedPeriod:
-                Circle().strokeBorder(DawtColor.period, style: StrokeStyle(lineWidth: 2, dash: [3, 3]))
-            case .overduePeriod:
-                Circle().fill(Color(white: 0.82))
-            case .ovulation:
-                Circle().strokeBorder(DawtColor.fertile, style: StrokeStyle(lineWidth: 2, dash: [3, 3]))
-            case .fertile, .none:
-                EmptyView()
-            }
-            Text("26")
-                .font(DawtType.body(15, weight: .semibold))
-                .foregroundStyle(style == .loggedPeriod ? .white : (style == .fertile || style == .ovulation ? DawtColor.fertile : (style == .predictedPeriod ? DawtColor.period : DawtColor.ink)))
-        }
-        .frame(width: 44, height: 44)
     }
 }

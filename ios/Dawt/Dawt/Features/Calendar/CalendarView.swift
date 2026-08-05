@@ -5,7 +5,7 @@ struct CalendarView: View {
     @State private var month: Date = Date()
 
     private let cal = Calendar.current
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 
     var body: some View {
         NavigationStack {
@@ -14,7 +14,7 @@ struct CalendarView: View {
                 VStack(spacing: 16) {
                     header
                     weekdayHeader
-                    LazyVGrid(columns: columns, spacing: 8) {
+                    LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(daysInMonth, id: \.self) { date in
                             if let date {
                                 dayCell(date)
@@ -23,7 +23,7 @@ struct CalendarView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 12)
 
                     legend
                         .padding(.horizontal, 20)
@@ -66,53 +66,54 @@ struct CalendarView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
     }
 
     private func dayCell(_ date: Date) -> some View {
         let marker = appState.predictionEngine.dayMarker(for: date, profile: appState.profile, logs: appState.dayLogs)
-        let isToday = cal.isDateInToday(date)
+        let style = CycleDayStyle(marker)
+        let day = cal.component(.day, from: date)
         return Button {
             appState.openDayLog(for: date)
         } label: {
-            VStack(spacing: 4) {
-                Text("\(cal.component(.day, from: date))")
-                    .font(DawtType.body(15, weight: isToday ? .bold : .regular))
-                    .foregroundStyle(DawtColor.ink)
-                Circle()
-                    .fill(markerColor(marker))
-                    .frame(width: 7, height: 7)
-                    .opacity(marker == .none ? 0 : 1)
-            }
+            CycleDayChip(
+                day: day,
+                style: style,
+                size: 40,
+                emphasizeToday: cal.isDateInToday(date)
+            )
             .frame(maxWidth: .infinity)
             .frame(height: 44)
-            .background(
-                Circle()
-                    .fill(isToday ? DawtColor.rose.opacity(0.15) : Color.clear)
-                    .padding(2)
-            )
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(accessibility(date: date, marker: marker))
+        .accessibilityLabel(accessibility(date: date, style: style))
     }
 
     private var legend: some View {
-        HStack(spacing: 14) {
-            legendItem("Period", DawtColor.period)
-            legendItem("Predicted", DawtColor.period.opacity(0.45))
-            legendItem("Fertile", DawtColor.fertile)
-            legendItem("Ovulation", DawtColor.ovulation)
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Legend")
+                .font(DawtType.body(13, weight: .semibold))
+                .foregroundStyle(DawtColor.inkMuted)
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 12) {
+                miniLegend(.loggedPeriod, "Logged period")
+                miniLegend(.predictedPeriod, "Predicted period")
+                miniLegend(.fertile, "Fertile window")
+                miniLegend(.ovulation, "Ovulation")
+                miniLegend(.overduePeriod, "Not logged yet")
+            }
         }
-        .font(DawtType.body(11))
-        .foregroundStyle(DawtColor.inkMuted)
         .dawtCard()
     }
 
-    private func legendItem(_ title: String, _ color: Color) -> some View {
-        HStack(spacing: 4) {
-            Circle().fill(color).frame(width: 7, height: 7)
+    private func miniLegend(_ style: CycleDayStyle, _ title: String) -> some View {
+        HStack(spacing: 8) {
+            CycleDayChip(day: 26, style: style, size: 28)
             Text(title)
+                .font(DawtType.body(12))
+                .foregroundStyle(DawtColor.inkMuted)
+                .lineLimit(2)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var daysInMonth: [Date?] {
@@ -127,22 +128,13 @@ struct CalendarView: View {
         return cells
     }
 
-    private func markerColor(_ marker: CyclePredictionEngine.DayMarker) -> Color {
-        switch marker {
-        case .none: return .clear
-        case .loggedPeriod: return DawtColor.period
-        case .predictedPeriod: return DawtColor.period.opacity(0.45)
-        case .fertile: return DawtColor.fertile
-        case .ovulation: return DawtColor.ovulation
-        }
-    }
-
-    private func accessibility(date: Date, marker: CyclePredictionEngine.DayMarker) -> String {
+    private func accessibility(date: Date, style: CycleDayStyle) -> String {
         let day = date.formatted(date: .abbreviated, time: .omitted)
-        switch marker {
+        switch style {
         case .none: return day
         case .loggedPeriod: return "\(day), logged period"
         case .predictedPeriod: return "\(day), predicted period"
+        case .overduePeriod: return "\(day), period not logged"
         case .fertile: return "\(day), fertile window"
         case .ovulation: return "\(day), estimated ovulation"
         }

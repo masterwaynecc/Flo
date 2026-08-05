@@ -93,12 +93,13 @@ struct CyclePredictionEngine: Sendable {
             return .fertile
         }
         if let next = prediction.nextPeriodStart {
-            let periodEnd = cal.date(byAdding: .day, value: prediction.periodLength - 1, to: next) ?? next
-            if day >= cal.startOfDay(for: next) && day <= periodEnd {
-                // Only mark predicted period in the future relative to last logged period end.
+            let nextStart = cal.startOfDay(for: next)
+            let periodEnd = cal.date(byAdding: .day, value: prediction.periodLength - 1, to: nextStart) ?? nextStart
+            if day >= nextStart && day <= periodEnd {
                 let hasLoggedOnDay = logs.contains { cal.isDate($0.date, inSameDayAs: day) && $0.flow.isPeriod }
-                if !hasLoggedOnDay && day >= cal.startOfDay(for: Date()) {
-                    return .predictedPeriod
+                if !hasLoggedOnDay {
+                    let today = cal.startOfDay(for: Date())
+                    return day < today ? .overduePeriod : .predictedPeriod
                 }
             }
         }
@@ -106,7 +107,7 @@ struct CyclePredictionEngine: Sendable {
     }
 
     enum DayMarker {
-        case none, loggedPeriod, predictedPeriod, fertile, ovulation
+        case none, loggedPeriod, predictedPeriod, overduePeriod, fertile, ovulation
     }
 
     private func detectPeriodStarts(from logs: [DayLog]) -> [Date] {
