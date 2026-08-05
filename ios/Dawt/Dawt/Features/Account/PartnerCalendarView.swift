@@ -266,7 +266,7 @@ struct PartnerHowItWorksView: View {
                                 style: .overduePeriod,
                                 title: "Gray filled days",
                                 titleColor: Color(white: 0.75),
-                                detail: "\(possessive) period has not been logged",
+                                detail: "\(possessive) expected period days that haven’t been logged yet",
                                 onDark: true
                             )
                         }

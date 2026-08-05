@@ -5,7 +5,7 @@ enum CycleDayStyle: Equatable {
     case none
     case loggedPeriod      // pink filled
     case predictedPeriod   // pink dotted circle
-    case overduePeriod     // gray filled (predicted days not logged)
+    case overduePeriod     // gray filled — expected/predicted period day with no log yet
     case fertile           // teal number only
     case ovulation         // teal dotted circle
 

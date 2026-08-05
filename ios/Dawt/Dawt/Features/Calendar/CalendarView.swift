@@ -99,7 +99,7 @@ struct CalendarView: View {
                 miniLegend(.predictedPeriod, "Predicted period")
                 miniLegend(.fertile, "Fertile window")
                 miniLegend(.ovulation, "Ovulation")
-                miniLegend(.overduePeriod, "Not logged yet")
+                miniLegend(.overduePeriod, "Expected period, not logged")
             }
         }
         .dawtCard()
