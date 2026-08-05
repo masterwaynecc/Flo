@@ -24,6 +24,29 @@ final class CyclePredictionEngineTests: XCTestCase {
         XCTAssertNotNil(prediction.nextPeriodStart)
     }
 
+    func testForecastsPredictedPeriodsFiveMonthsAhead() {
+        var profile = UserProfile()
+        profile.typicalCycleLength = 28
+        profile.typicalPeriodLength = 5
+        let today = cal.startOfDay(for: Date())
+        profile.lastPeriodStart = today
+        let logs = [DayLog(date: today, flow: .medium)]
+
+        // ~3 cycles ahead should still show predicted period days.
+        let futureStart = cal.date(byAdding: .day, value: 28 * 3, to: today)!
+        XCTAssertEqual(
+            engine.dayMarker(for: futureStart, profile: profile, logs: logs),
+            .predictedPeriod
+        )
+
+        let beyond = cal.date(byAdding: .month, value: 6, to: today)!
+        XCTAssertEqual(
+            engine.dayMarker(for: beyond, profile: profile, logs: logs),
+            .none,
+            "Markers should stop after the 5-month forecast horizon"
+        )
+    }
+
     func testUsesTypicalPeriodLengthWhileCurrentPeriodIsOpen() {
         var profile = UserProfile()
         profile.typicalCycleLength = 28

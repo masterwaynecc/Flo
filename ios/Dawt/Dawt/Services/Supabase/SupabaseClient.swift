@@ -255,11 +255,18 @@ actor SupabaseClient {
             "cycle_day": prediction.cycleDay,
             "phase": prediction.phase.rawValue,
             "period_length": prediction.periodLength,
+            "cycle_length": prediction.cycleLength,
             "display_handle": profile.displayName.isEmpty ? NSNull() : profile.displayName,
             "logged_period_dates": loggedPeriodDates,
             "updated_at": iso.string(from: Date())
         ]
-        if let periodStart = profile.lastPeriodStart {
+        let periodAnchor = logs
+            .filter(\.flow.isPeriod)
+            .map { Calendar.current.startOfDay(for: $0.date) }
+            .sorted()
+            .last
+            ?? profile.lastPeriodStart.map { Calendar.current.startOfDay(for: $0) }
+        if let periodStart = periodAnchor {
             row["period_start"] = dayString(periodStart)
             if let end = cal.date(byAdding: .day, value: max(prediction.periodLength - 1, 0), to: periodStart) {
                 row["period_end"] = dayString(end)
@@ -466,6 +473,7 @@ struct CycleShareSnapshotDTO: Codable, Identifiable, Equatable {
     let cycleDay: Int?
     let phase: String?
     let periodLength: Int?
+    let cycleLength: Int?
     let displayHandle: String?
     let loggedPeriodDates: [String]?
     let updatedAt: Date?
@@ -481,6 +489,7 @@ struct CycleShareSnapshotDTO: Codable, Identifiable, Equatable {
         case cycleDay = "cycle_day"
         case phase
         case periodLength = "period_length"
+        case cycleLength = "cycle_length"
         case displayHandle = "display_handle"
         case loggedPeriodDates = "logged_period_dates"
         case updatedAt = "updated_at"

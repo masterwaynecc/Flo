@@ -28,6 +28,11 @@ struct CalendarView: View {
                     legend
                         .padding(.horizontal, 20)
 
+                    Text("Predictions shown for the next \(CyclePredictionEngine.forecastMonths) months.")
+                        .font(DawtType.body(11))
+                        .foregroundStyle(DawtColor.inkMuted)
+                        .padding(.horizontal, 20)
+
                     Spacer()
                 }
                 .padding(.top, 8)

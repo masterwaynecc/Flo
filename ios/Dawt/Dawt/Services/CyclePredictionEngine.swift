@@ -3,6 +3,8 @@ import Foundation
 /// Stateless prediction engine. Algorithm version is stamped on each result.
 struct CyclePredictionEngine: Sendable {
     static let algorithmVersion = "dawt-avg-v1"
+    /// How far ahead calendars project period / fertile / ovulation markers.
+    static let forecastMonths = 5
 
     func predict(profile: UserProfile, logs: [DayLog], asOf date: Date = Date()) -> CyclePrediction {
         let cal = Calendar.current
@@ -80,10 +82,11 @@ struct CyclePredictionEngine: Sendable {
     }
 
     func dayMarker(for date: Date, profile: UserProfile, logs: [DayLog]) -> DayMarker {
-        let prediction = predict(profile: profile, logs: logs, asOf: date)
+        let prediction = predict(profile: profile, logs: logs, asOf: Date())
         let cal = Calendar.current
         let day = cal.startOfDay(for: date)
         let today = cal.startOfDay(for: Date())
+        let horizon = cal.date(byAdding: .month, value: Self.forecastMonths, to: today) ?? today
         let loggedPeriod = logs.contains { cal.isDate($0.date, inSameDayAs: day) && $0.flow.isPeriod }
 
         // Never treat a future day as already-logged period — those are predictions until the day arrives.
@@ -91,29 +94,44 @@ struct CyclePredictionEngine: Sendable {
             return day > today ? .predictedPeriod : .loggedPeriod
         }
 
-        if let periodMarker = expectedPeriodMarker(
-            day: day,
-            today: today,
-            start: currentPeriodStart(profile: profile, logs: logs),
-            length: prediction.periodLength
-        ) {
-            return periodMarker
+        guard let anchor = currentPeriodStart(profile: profile, logs: logs) else { return .none }
+        let cycleLength = max(prediction.cycleLength, 21)
+        let periodLength = max(prediction.periodLength, 2)
+        let starts = projectedPeriodStarts(
+            from: anchor,
+            cycleLength: cycleLength,
+            through: max(day, horizon)
+        )
+
+        for start in starts {
+            if let periodMarker = expectedPeriodMarker(
+                day: day,
+                today: today,
+                start: start,
+                length: periodLength
+            ) {
+                // Only project period markers within the forecast horizon (plus current/open bleed).
+                if day <= horizon || start <= today {
+                    return periodMarker
+                }
+            }
         }
 
-        if let ov = prediction.ovulationDay, cal.isDate(ov, inSameDayAs: day) {
-            return .ovulation
-        }
-        if let fertile = prediction.fertileWindow, fertile.contains(day) {
-            return .fertile
-        }
-        if let next = prediction.nextPeriodStart,
-           let periodMarker = expectedPeriodMarker(
-            day: day,
-            today: today,
-            start: cal.startOfDay(for: next),
-            length: prediction.periodLength
-           ) {
-            return periodMarker
+        // Fertile / ovulation only inside the forecast window.
+        guard day <= horizon else { return .none }
+
+        let ovulationOffset = max(cycleLength - 14, 1)
+        for start in starts where start <= horizon {
+            if let ovulation = cal.date(byAdding: .day, value: ovulationOffset - 1, to: start),
+               cal.isDate(ovulation, inSameDayAs: day) {
+                return .ovulation
+            }
+            if let fertileStart = cal.date(byAdding: .day, value: max(ovulationOffset - 5, 0), to: start),
+               let fertileEnd = cal.date(byAdding: .day, value: ovulationOffset + 1, to: start),
+               day >= fertileStart,
+               day <= fertileEnd {
+                return .fertile
+            }
         }
         return .none
     }
@@ -131,6 +149,23 @@ struct CyclePredictionEngine: Sendable {
         let cal = Calendar.current
         return detectPeriodStarts(from: logs).last
             ?? profile.lastPeriodStart.map { cal.startOfDay(for: $0) }
+    }
+
+    /// Period starts from the current/anchor cycle forward until `through`.
+    func projectedPeriodStarts(from anchor: Date, cycleLength: Int, through: Date) -> [Date] {
+        let cal = Calendar.current
+        let step = max(cycleLength, 21)
+        var starts: [Date] = []
+        var cursor = cal.startOfDay(for: anchor)
+        let end = cal.startOfDay(for: through)
+        var guardCount = 0
+        while cursor <= end && guardCount < 24 {
+            starts.append(cursor)
+            guard let next = cal.date(byAdding: .day, value: step, to: cursor) else { break }
+            cursor = next
+            guardCount += 1
+        }
+        return starts
     }
 
     enum DayMarker {

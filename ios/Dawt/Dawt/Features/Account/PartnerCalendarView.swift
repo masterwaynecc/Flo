@@ -1,48 +1,69 @@
 import SwiftUI
 
 enum PartnerCalendarMarkers {
+    static let forecastMonths = CyclePredictionEngine.forecastMonths
+
     static func style(for date: Date, snapshot: CycleShareSnapshotDTO) -> CycleDayStyle {
         let cal = Calendar.current
         let day = cal.startOfDay(for: date)
         let key = dayKey(day)
         let logged = Set(snapshot.loggedPeriodDates ?? [])
         let today = cal.startOfDay(for: Date())
-        let periodLength = max(snapshot.periodLength ?? 5, 1)
+        let horizon = cal.date(byAdding: .month, value: forecastMonths, to: today) ?? today
+        let periodLength = max(snapshot.periodLength ?? 5, 2)
+        let cycleLength = max(snapshot.cycleLength ?? 28, 21)
 
         if logged.contains(key) {
-            // Future “logged” rows are treated as predictions until that day arrives.
             return day > today ? .predictedPeriod : .loggedPeriod
         }
 
-        if let start = parseDay(snapshot.periodStart) {
-            let end = parseDay(snapshot.periodEnd)
-                ?? cal.date(byAdding: .day, value: periodLength - 1, to: start)
-            if let end, day >= start, day <= end {
+        guard let anchor = parseDay(snapshot.periodStart) ?? parseDay(snapshot.nextPeriodStart) else {
+            return .none
+        }
+
+        let starts = projectedPeriodStarts(from: anchor, cycleLength: cycleLength, through: max(day, horizon))
+        for start in starts {
+            if let end = cal.date(byAdding: .day, value: periodLength - 1, to: start),
+               day >= start,
+               day <= end,
+               (day <= horizon || start <= today) {
                 return day < today ? .overduePeriod : .predictedPeriod
             }
         }
 
-        if let ovulation = parseDay(snapshot.ovulationDay), cal.isDate(ovulation, inSameDayAs: day) {
-            return .ovulation
-        }
+        guard day <= horizon else { return .none }
 
-        if let start = parseDay(snapshot.fertileWindowStart),
-           let end = parseDay(snapshot.fertileWindowEnd),
-           day >= cal.startOfDay(for: start),
-           day <= cal.startOfDay(for: end) {
-            return .fertile
-        }
-
-        if let next = parseDay(snapshot.nextPeriodStart) {
-            let nextStart = cal.startOfDay(for: next)
-            if let predictedEnd = cal.date(byAdding: .day, value: periodLength - 1, to: nextStart),
-               day >= nextStart,
-               day <= predictedEnd {
-                return day < today ? .overduePeriod : .predictedPeriod
+        let ovulationOffset = max(cycleLength - 14, 1)
+        for start in starts where start <= horizon {
+            if let ovulation = cal.date(byAdding: .day, value: ovulationOffset - 1, to: start),
+               cal.isDate(ovulation, inSameDayAs: day) {
+                return .ovulation
+            }
+            if let fertileStart = cal.date(byAdding: .day, value: max(ovulationOffset - 5, 0), to: start),
+               let fertileEnd = cal.date(byAdding: .day, value: ovulationOffset + 1, to: start),
+               day >= fertileStart,
+               day <= fertileEnd {
+                return .fertile
             }
         }
 
         return .none
+    }
+
+    static func projectedPeriodStarts(from anchor: Date, cycleLength: Int, through: Date) -> [Date] {
+        let cal = Calendar.current
+        let step = max(cycleLength, 21)
+        var starts: [Date] = []
+        var cursor = cal.startOfDay(for: anchor)
+        let end = cal.startOfDay(for: through)
+        var guardCount = 0
+        while cursor <= end && guardCount < 24 {
+            starts.append(cursor)
+            guard let next = cal.date(byAdding: .day, value: step, to: cursor) else { break }
+            cursor = next
+            guardCount += 1
+        }
+        return starts
     }
 
     static func dayKey(_ date: Date) -> String {
@@ -100,7 +121,7 @@ struct PartnerCalendarView: View {
                 }
                 .padding(.top, 4)
 
-                Text("Predictions are educational only — not contraception or medical advice.")
+                Text("Predictions shown for the next \(PartnerCalendarMarkers.forecastMonths) months. Educational only — not contraception.")
                     .font(DawtType.body(11))
                     .foregroundStyle(DawtColor.inkMuted)
                     .multilineTextAlignment(.center)
@@ -238,7 +259,7 @@ struct PartnerHowItWorksView: View {
                             .font(DawtType.display(34, weight: .bold))
                             .foregroundStyle(Color(red: 0.72, green: 0.86, blue: 0.95))
 
-                        Text("Open their shared calendar to see period timing and fertile-window estimates.")
+                        Text("Open their shared calendar to see period timing and fertile-window estimates for the next \(PartnerCalendarMarkers.forecastMonths) months.")
                             .font(DawtType.body(16))
                             .foregroundStyle(.white.opacity(0.85))
 
